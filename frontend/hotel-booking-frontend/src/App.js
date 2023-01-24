@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from "./pages/Home"
 import List from "./pages/List"
 import Hotel from "./pages/Hotel"
+import "./App.css"
 
 const App = () => {
   return (
