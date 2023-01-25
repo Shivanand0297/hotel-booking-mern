@@ -21,6 +21,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 
 // header css
 import "./header.css";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({type}) => {
   const [date, setDate] = useState([
@@ -44,6 +45,9 @@ const Header = ({type}) => {
     room: 1
   })
 
+  // to set Destination
+  const [destination, setDestination] = useState("")
+
   // for changing the hotel options
   const handleChange = (person, operation) =>{
     setOptions(prev=>({
@@ -51,27 +55,39 @@ const Header = ({type}) => {
     }))
   }
 
+  const navigate = useNavigate()
+
+  const handleSearch = () =>{
+
+    // navigate to /hotels route with this information because we want to show this in the list
+    navigate("/hotels", { state: {
+      destination, 
+      date,
+      options
+    }})
+  }
+
   return (
     <div className="header">
-      <div class={ type === "list" ? "headerContainer listMode" : "headerContainer"}>
-        <div class="headerList">
-          <div class="headerListItem active">
+      <div className={ type === "list" ? "headerContainer listMode" : "headerContainer"}>
+        <div className="headerList">
+          <div className="headerListItem active">
             <FontAwesomeIcon icon={faBed} />
             <span>Stays</span>
           </div>
-          <div class="headerListItem">
+          <div className="headerListItem">
             <FontAwesomeIcon icon={faPlane} />
             <span>Flights</span>
           </div>
-          <div class="headerListItem">
+          <div className="headerListItem">
             <FontAwesomeIcon icon={faCar} />
             <span>Car Rentals</span>
           </div>
-          <div class="headerListItem">
+          <div className="headerListItem">
             <FontAwesomeIcon icon={faMapLocation} />
             <span>Attractions</span>
           </div>
-          <div class="headerListItem">
+          <div className="headerListItem">
             <FontAwesomeIcon icon={faTaxi} />
             <span>Airport taxis</span>
           </div>
@@ -84,17 +100,19 @@ const Header = ({type}) => {
           with free booking
         </p>
         <button className="headerBtn">Sign in / Register</button>
-        <div class="headerSearch">
-          <div class="headerSearchItem">
+        <div className="headerSearch">
+          <div className="headerSearchItem">
             <FontAwesomeIcon icon={faBed} className="headerIcon" />
             <input
               type="text"
               placeholder="Where are your going"
               className="headerSearchInput"
+              value={destination}
+              onChange={e=>(setDestination(e.target.value))}
             />
           </div>
 
-          <div class="headerSearchItem"
+          <div className="headerSearchItem"
           >
             <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
             {/* this will be dynamic */}
@@ -114,35 +132,35 @@ const Header = ({type}) => {
             />}
           </div>
 
-          <div class="headerSearchItem">
+          <div className="headerSearchItem">
             <FontAwesomeIcon icon={faPerson} className="headerIcon" />
             <span 
             className="headerSearchText" onClick={()=>{setOpenOptions(!openOptions)}} >
               {`${options.adult} Adult, ${options.children} Children, ${options.room} Room`}
             </span>
-            { openOptions && <div class="options">
-              <div class="optionItems">
-                <span class="optionItemText">Adult</span>
-                <div class="optionCounter">
-                  <button class="optionCounterButton"  disabled={options.adult <=1} onClick={()=>{handleChange("adult", "d")}} >-</button>
-                  <span class="optionCounterNumber">{options.adult}</span>
-                  <button class="optionCounterButton" onClick={()=>{handleChange("adult", "i")}} >+</button>
+            { openOptions && <div className="options">
+              <div className="optionItems">
+                <span className="optionItemText">Adult</span>
+                <div className="optionCounter">
+                  <button className="optionCounterButton"  disabled={options.adult <=1} onClick={()=>{handleChange("adult", "d")}} >-</button>
+                  <span className="optionCounterNumber">{options.adult}</span>
+                  <button className="optionCounterButton" onClick={()=>{handleChange("adult", "i")}} >+</button>
                 </div>
               </div>
-              <div class="optionItems">
-                <span class="optionItemText">Children</span>
-                <div class="optionCounter">
-                  <button class="optionCounterButton" disabled={options.children <=0} onClick={()=>{handleChange("children", "d")}} >-</button>
-                  <span class="optionCounterNumber">{options.children}</span>
-                  <button class="optionCounterButton" onClick={()=>{handleChange("children", "i")}} >+</button>
+              <div className="optionItems">
+                <span className="optionItemText">Children</span>
+                <div className="optionCounter">
+                  <button className="optionCounterButton" disabled={options.children <=0} onClick={()=>{handleChange("children", "d")}} >-</button>
+                  <span className="optionCounterNumber">{options.children}</span>
+                  <button className="optionCounterButton" onClick={()=>{handleChange("children", "i")}} >+</button>
                 </div>
               </div>
-              <div class="optionItems">
-                <span class="optionItemText">Room</span>
-                <div class="optionCounter">
-                  <button class="optionCounterButton" disabled={options.room <=1}  onClick={()=>{handleChange("room", "d")}} >-</button>
-                  <span class="optionCounterNumber">{options.room}</span>
-                  <button class="optionCounterButton" onClick={()=>{handleChange("room", "i")}} >+</button>
+              <div className="optionItems">
+                <span className="optionItemText">Room</span>
+                <div className="optionCounter">
+                  <button className="optionCounterButton" disabled={options.room <=1}  onClick={()=>{handleChange("room", "d")}} >-</button>
+                  <span className="optionCounterNumber">{options.room}</span>
+                  <button className="optionCounterButton" onClick={()=>{handleChange("room", "i")}} >+</button>
                 </div>
               </div>
             </div>
@@ -150,8 +168,8 @@ const Header = ({type}) => {
             
           </div>
 
-          <div class="headerSearchItem">
-            <button class="headerBtn">Search</button>
+          <div className="headerSearchItem">
+            <button className="headerBtn" onClick={handleSearch} >Search</button>
           </div>
         
         </div>
