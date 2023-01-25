@@ -12,8 +12,10 @@
   margin: 20px 0px 100px 0px;
 }
 
-.headerContainer.listMode {
+/* list mode */
+.headerContainer.listMode{
   margin: 20px 0px 0px 0px;
+
 }
 
 .headerList {
