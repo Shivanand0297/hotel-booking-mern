@@ -35,10 +35,76 @@
 }
 
 .headerBtn {
-  background-color: var(--color-btn);
+  background-color: var(--btn-color);
   color: white;
   font-weight: 500;
   border: none;
   padding: 10px;
   cursor: pointer;
+}
+
+.headerSearch{
+  display: flex;
+  height: 50px;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #FFF;
+  color: #b1b1b1;
+  border: 3px solid var(--border-color);
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: -25px;
+  width: 100%;
+  max-width: 1024px;
+
+}
+
+.headerSearchItem{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.headerSearchText{
+  cursor: pointer;
+}
+
+.date{
+  position: absolute;
+  top: 45px;
+  left: 25%;
+}
+
+.options{
+  position: absolute;
+  top: 45px;
+  background-color: #fff;
+  color: #b1b1b1;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  width: 220px;
+}
+
+.optionItems{
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.optionCounter{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #000;
+}
+.optionCounterButton{
+  border: 1px solid var(--btn-color);
+  color: var(--btn-color);
+  width: 30px;
+  height: 30px;
+}
+.optionCounterButton:disabled{
+  cursor: not-allowed;
 }
