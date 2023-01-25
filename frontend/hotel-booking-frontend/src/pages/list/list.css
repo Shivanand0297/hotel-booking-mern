@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .listWrapper {
@@ -10,21 +10,23 @@
   width: 100%;
   max-width: 1024px;
   gap: 20px;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 
 .listSearch {
   flex: 1;
   min-width: 352px;
-  border: 1px solid yellow;
+  height: max-content;
+  /* border: 1px solid yellow; */
   background-color: var(--border-color);
   padding: 10px;
   border-radius: 10px;
   position: sticky;
+  top: 10px;
 }
 .listResult {
   flex: 3;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 .lsTitle {

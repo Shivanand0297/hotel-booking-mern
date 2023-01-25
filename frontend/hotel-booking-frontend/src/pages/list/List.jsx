@@ -5,6 +5,7 @@ import Header from '../../components/header/Header'
 import Navbar from '../../components/navbar/Navbar'
 import "./list.css"
 import { DateRange } from 'react-date-range'
+import SearchItem from '../../components/searchItem/SearchItem'
 
 const List = () => {
 
@@ -79,13 +80,13 @@ const List = () => {
                 <span class="lsOptionText">
                   Room
                 </span>
-                <input type="number" min={1} className='lsOptionInput' placeholder={options.room} />
+              <input type="number" min={1} className='lsOptionInput' placeholder={options.room} />
               </div>
               <button className='lsOptionSearch' >Search</button>
             </div>
           </div>
           <div className="listResult">
-
+              <SearchItem/>
           </div>
         </div>
       </div>
