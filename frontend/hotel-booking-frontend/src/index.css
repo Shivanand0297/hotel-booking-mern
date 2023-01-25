@@ -14,5 +14,6 @@ body {
   }
   
   :root{
-    --color-btn: #0071c2;
+    --btn-color: #0071c2;
+    --border-color: #febb02;
   }
