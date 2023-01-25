@@ -75,11 +75,13 @@
   position: absolute;
   top: 45px;
   left: 25%;
+  z-index: 2;
 }
 
 .options{
   position: absolute;
   top: 45px;
+  z-index: 2;
   background-color: #fff;
   color: #b1b1b1;
   border-radius: 5px;
