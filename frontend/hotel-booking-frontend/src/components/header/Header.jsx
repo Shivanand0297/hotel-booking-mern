@@ -124,10 +124,12 @@ const Header = ({type}) => {
             </span>
 
             { openDate && <DateRange
-              editableDateInputs={true}
+              editableDateInputs={true} //whether dates can be edited in the Calendar's input fields
               onChange={(item) => setDate([item.selection])}
               moveRangeOnFirstSelection={false}
-              ranges={date}
+              minDate={new Date()}  // to prevent the selection of back date
+
+              ranges={date} //Defines ranges. array of range object
               className="date"
             />}
           </div>
