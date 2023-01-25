@@ -1,6 +1,7 @@
 import React from 'react'
 import Featured from '../../components/featured/Featured'
 import FeaturedProperties from '../../components/FeaturedProperties/FeaturedProperties'
+import Footer from '../../components/footer/Footer'
 import Header from '../../components/header/Header'
 import MailList from '../../components/mailList/MailList'
 import Navbar from '../../components/navbar/Navbar'
@@ -19,6 +20,7 @@ const Home = () => {
         <h1 className='homeTitle' >Home Guest Love</h1>
         <FeaturedProperties/>
         <MailList/>
+        <Footer/>
       </div>
     </div>
   )
