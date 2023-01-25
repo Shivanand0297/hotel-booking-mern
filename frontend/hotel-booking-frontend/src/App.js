@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from "./pages/Home"
-import List from "./pages/List"
-import Hotel from "./pages/Hotel"
+import Home from "./pages/home/Home"
+import List from "./pages/list/List"
+import Hotel from "./pages/hotel/Hotel"
 import "./App.css"
 
 const App = () => {
