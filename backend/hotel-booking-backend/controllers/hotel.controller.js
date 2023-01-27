@@ -10,6 +10,11 @@ import Hotel from "../models/Hotel.schema.js"
 
 export const creatHotel = async (req, res, next)=>{
     try {
+        // only admin can create hotel
+        if(!(req.user.isAdmin)){
+            return next(errorHandler(401, "Not authorized"))
+        }
+
         const hotel = await Hotel.create(req.body)
         res.status(200).json(hotel)
     } catch (error) {
@@ -26,6 +31,11 @@ export const creatHotel = async (req, res, next)=>{
 
 export const updateHotel = async (req, res, next)=>{
     try {
+        // only admin can update hotel
+        if(!(req.user.isAdmin)){
+            return next(errorHandler(401, "Not authorized"))
+        }
+
         const hotel = await Hotel.findByIdAndUpdate(req.params.id, 
             {$set: req.body}, //mongodb update operator
             {new: true})
@@ -45,6 +55,12 @@ export const updateHotel = async (req, res, next)=>{
 
 export const deleteHotel = async (req, res, next)=>{
     try {
+
+        // only admin can delete hotel
+        if(!(req.user.isAdmin)){
+            return next(errorHandler(401, "Not authorized"))
+        }
+
         await Hotel.findByIdAndDelete(req.params.id)
         res.status(200).json("Hotel has been deleted.")
     } catch (err) {

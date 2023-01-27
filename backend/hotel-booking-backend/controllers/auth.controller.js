@@ -1,6 +1,8 @@
 import User from "../models/User.schema.js"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
+import { errorHandler } from "../utils/errorHandler.js";
+import config from "../config/index.js";
 
 /********************************
  * @REGISTER_USER
@@ -16,13 +18,14 @@ export const register = async (req, res, next)=>{
 
         // validating the input
         if(!username || !email || !password){
-            return next(400, "All fields are required")
+            return next(errorHandler(400, "All fields are required"))
         }
 
         // checking for already present user with the same email
         const alreadyPresent = await User.findOne({email})
         if(alreadyPresent){
-            return next(401, "User already present with the same email")
+            return next(errorHandler(400, "User already present with the same email"))
+            
         }
         
         // encrypting the password before creating
@@ -56,34 +59,53 @@ export const register = async (req, res, next)=>{
 export const login = async (req, res, next)=>{
     try {
         // taking input from the user
-        const { username, email, password } = req.body;
+        const { email, password } = req.body;
 
         // validating the input
-        if(!username || !email || !password){
-            return next(400, "All fields are required")
+        if(!email || !password){
+            return next(errorHandler(400, "All fields are required"))
         }
 
-        // checking for already present user with the same email
-        const alreadyPresent = await User.findOne({email})
-        if(alreadyPresent){
-            return next(401, "User already present with the same email")
+        // checking if user exists or not
+        const user = await User.findOne({email})
+        if(!user){
+            return next(errorHandler(404, "User not found"))
         }
         
-        // encrypting the password before creating
-        const encryptedPassword = await bcrypt.hash(password, 10)
+        // if user is there
+        if(user && (await bcrypt.compare(password, user.password))){
 
-        const user = await User.create({
-            username, 
-            email,
-            password: encryptedPassword, 
-        })
+            // assign him a token
+            const token = jwt.sign(
+                {
+                    id: user._id,
+                    isAdmin: user.isAdmin
+                },
+                config.JWT_SECRET,
+                {
+                    expiresIn: config.JWT_EXPIRY
+                }
+            )
 
-        user.password = undefined;
-        return res.status(201).json({
-            success: true,
-            message: "User registered successfully",
-            user
-        })
+            // setting cookie for 3 days
+            res.cookie("authToken", token, {
+                expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+                httpOnly: true 
+            })
+
+            // removing password before sending the user
+            user.password = undefined
+            user.isAdmin = undefined
+            // const { password, isAdmin, ...otherProps } = user._doc   //another way
+           return res.status(200).json({
+                success: true,
+                message: "Logged in successfully",
+                user
+            })
+
+        } else{
+            return next(errorHandler(400, "Wrong password or email"))
+        }
 
     } catch (err) {
         next(err)

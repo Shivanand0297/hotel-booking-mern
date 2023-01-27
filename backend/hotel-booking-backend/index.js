@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.js";
 import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 import usersRoute from "./routes/users.js";
+import cookieParser from "cookie-parser";
 
 mongoose.set("strictQuery", true);
 const app = express();
@@ -32,12 +33,13 @@ mongoose.connection.on("disconnected", () => {
 app.use(express.json())
 // to accept nested json values
 app.use(express.urlencoded({extended: true}))
+app.use(cookieParser())
 
 // routes
 app.use(`/api/${v}/auth`, authRoute); //"auth" endpoint for authRoute
-app.use(`/api/${v}/hotels`, hotelsRoute); //"auth" endpoint for hotelsRoute
-app.use(`/api/${v}/rooms`, roomsRoute); //"auth" endpoint for roomsRoute
-app.use(`/api/${v}/users`, usersRoute); //"auth" endpoint for usersRoute
+app.use(`/api/${v}/hotels`, hotelsRoute); //"hotels" endpoint for hotelsRoute
+app.use(`/api/${v}/rooms`, roomsRoute); //"rooms" endpoint for roomsRoute
+app.use(`/api/${v}/users`, usersRoute); //"users" endpoint for usersRoute
 
 // error handler middleware
 app.use((err, _req, res, next)=>{
