@@ -1,4 +1,5 @@
 import Hotel from "../models/Hotel.schema.js"
+import { errorHandler } from "../utils/errorHandler.js"
 
 
 /********************************
@@ -17,7 +18,7 @@ export const creatHotel = async (req, res, next)=>{
 
         const hotel = await Hotel.create(req.body)
         res.status(200).json(hotel)
-    } catch (error) {
+    } catch (err) {
         next(err)
     }
 }
