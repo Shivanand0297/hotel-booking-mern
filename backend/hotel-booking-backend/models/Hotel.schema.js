@@ -52,6 +52,9 @@ const HotelSchema = new Schema(
             default: false
         }
 
+    },
+    {
+        timestamps: true
     }
 )
 
