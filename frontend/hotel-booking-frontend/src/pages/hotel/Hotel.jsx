@@ -60,10 +60,10 @@ const Hotel = () => {
     <div>
       <Navbar/>
       <Header type="list" />
-      <div class="hotelContainer">
+      <div className="hotelContainer">
         {/* img slider */}
 
-       { openImgModal && <div class="slider">
+       { openImgModal && <div className="slider">
           <FontAwesomeIcon icon={faCircleXmark} 
           className="close"
           onClick={()=>setOpenImgModal(false)} 
@@ -72,8 +72,8 @@ const Hotel = () => {
           className="arrow" 
           onClick={()=>handleArrow("d")}
           />
-          <div class="sliderWrapper">
-            <img src={photos[slideNumber].src} alt="sliderimg" class="sliderImg"/>
+          <div className="sliderWrapper">
+            <img src={photos[slideNumber].src} alt="sliderimg" className="sliderImg"/>
           </div>
           <FontAwesomeIcon icon={faCircleArrowRight} 
           className="arrow" 
@@ -82,10 +82,10 @@ const Hotel = () => {
         </div>
         }
 
-        <div class="hotelWrapper">
+        <div className="hotelWrapper">
         <button className="bookNow">Reserve or Book Now!</button>
-          <h1 class="hotelTitle">Grand Title</h1>
-          <div class="hotelAddress">
+          <h1 className="hotelTitle">Grand Title</h1>
+          <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot}/>
             <span>Elton St 125 NewYork</span>
           </div>
@@ -93,12 +93,12 @@ const Hotel = () => {
           <span className="hotelPriceHighlight">Book a stay over $114 at this property and get a free airport taxi</span>
           <div className="hotelImages">
             {photos.map((photo, index)=>(
-              <div class="hotelImgWrapper" key={index} >
+              <div className="hotelImgWrapper" key={index} >
                 <img src={photo.src} onClick={()=>{handleImgModal(index)}} className="hotelImg" alt="hotelimg"/>
               </div>
             ))}
           </div>
-          <div class="hotelDetails">
+          <div className="hotelDetails">
 
           <div className="hotelDetailsTexts">
               <h1 className="hotelTitle">Stay in the heart of City</h1>

@@ -6,11 +6,12 @@ import Navbar from '../../components/navbar/Navbar'
 import "./list.css"
 import { DateRange } from 'react-date-range'
 import SearchItem from '../../components/searchItem/SearchItem'
+import useFetch from '../../hooks/useFetch'
+import {v} from "../../config/config"
 
 const List = () => {
 
   const location = useLocation()
-  console.log(location);
   // storing the payload from the location object
   const [destination, setDestination] = useState(location.state.destination)
   const [date, setDate] = useState(location.state.date)
@@ -18,6 +19,15 @@ const List = () => {
 
   // to open and close date options
   const [openDate, setOpenDate] = useState(false)
+
+  const [minPrice, setMinPrice] = useState('')
+  const [maxPrice, setMaxPrice] = useState('')
+
+  const { data, loading, error, reFetch} = useFetch(`/api/${v}/hotels?city=${destination}&min=${minPrice || 1}&max=${maxPrice || 888}`)
+
+  const handleSearch = () =>{
+    reFetch()
+  }
 
   return (
     <div>
@@ -46,48 +56,55 @@ const List = () => {
               />
               }
             </div>
-            <div class="lsItem">
+            <div className="lsItem">
               <label>Options</label>
-              <div class="lsOptionItem">
-                <span class="lsOptionText">
+              <div className="lsOptionItem">
+                <span className="lsOptionText">
                   Min Price <small>per night</small>
                 </span>
-                <input type="number" className='lsOptionInput'/>
+                <input type="number"  onChange={e=>setMinPrice(e.target.value)} className='lsOptionInput'/>
               </div>
 
-              <div class="lsOptionItem">
-                <span class="lsOptionText">
+              <div className="lsOptionItem">
+                <span className="lsOptionText">
                   Max Price <small>per night</small>
                 </span>
-                <input type="number" className='lsOptionInput'/>
+                <input type="number" onChange={e=>setMaxPrice(e.target.value)}  className='lsOptionInput'/>
               </div>
 
-              <div class="lsOptionItem">
-                <span class="lsOptionText">
+              <div className="lsOptionItem">
+                <span className="lsOptionText">
                   Adult
                 </span>
                 <input type="number" min={1} className='lsOptionInput' placeholder={options.adult} />
               </div>
 
-              <div class="lsOptionItem">
-                <span class="lsOptionText">
+              <div className="lsOptionItem">
+                <span className="lsOptionText">
                   Children
                 </span>
                 <input type="number" min={0} className='lsOptionInput' placeholder={options.children} />
               </div>
 
-              <div class="lsOptionItem">
-                <span class="lsOptionText">
+              <div className="lsOptionItem">
+                <span className="lsOptionText">
                   Room
                 </span>
               <input type="number" min={1} className='lsOptionInput' placeholder={options.room} />
               </div>
-              <button className='lsOptionSearch' >Search</button>
+              <button className='lsOptionSearch' onClick={handleSearch} >Search</button>
             </div>
           </div>
           <div className="listResult">
-              <SearchItem/>
+            { loading ? "Loading" :( 
+            <>
+            { data && data.map(item=>(
+                <SearchItem item={item} key={item._id} />
+            )) }
+            </>
+          )}
           </div>
+          
         </div>
       </div>
     </div>
