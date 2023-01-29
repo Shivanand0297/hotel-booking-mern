@@ -92,9 +92,13 @@ export const getHotel = async (req, res, next)=>{
  * @return - hotels obj
  ********************************/
 
-export const getAllHotel = async (_req, res, next)=>{
+export const getAllHotel = async (req, res, next)=>{
+
+    // seperating min and max from from other query parameters
+    const { min, max, ...others } = req.query
+
     try {
-        const hotel = await Hotel.find()
+        const hotel = await Hotel.find({...others, cheapestPrice: { $gt: min || 1, $lt: max || 888}}).limit(req.query.limit)
         res.status(200).json(hotel)
     } catch (err) {
         next(err)
@@ -131,6 +135,13 @@ export const countByCity = async (req, res, next)=>{
     }
 }
 
+
+/********************************
+ * @GET_HOTEL_BY_TYPE
+ * @type - GET
+ * @desc - to get all hotel by type
+ * @return - hotels obj
+ ********************************/
 
 export const countByType = async (_req, res, next)=>{
     try {

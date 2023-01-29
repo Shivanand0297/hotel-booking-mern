@@ -47,7 +47,7 @@ const HotelSchema = new Schema(
             type: Number,
             require: true
         },
-        feautred: {
+        featured: {
             type: Boolean,
             default: false
         }
