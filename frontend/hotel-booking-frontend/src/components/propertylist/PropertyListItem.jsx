@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PropertyListItem = ({src, title, subtitle}) => {
+const PropertyListItem = ({src, type, count}) => {
   return (
     <div className="pListItem">
         <img
@@ -9,8 +9,8 @@ const PropertyListItem = ({src, title, subtitle}) => {
           className="pListImg"
         />
         <div className="pListTitles">
-          <h1>{title}</h1>
-          <h2>{subtitle}</h2>
+          <h1>{type}</h1>
+          <h2>{count}</h2>
         </div>
       </div>
   )
