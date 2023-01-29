@@ -1,7 +1,16 @@
 import React from 'react'
+import useFetch from '../../hooks/useFetch.js'
 import "./featured.css"
+import { v } from '../../config/config.js'
+
+
 
 const Featured = () => {
+
+     const {data, loading, error} = useFetch(`/api/${v}/hotels/city/countByCity?cities=newdelhi,bangalore,channai,jaipur`) //custom hook
+
+     console.log(data);
+
   return (
     <div className='featured' >
         <div className="featuredItem">
