@@ -1,5 +1,5 @@
 import express from "express"
-import { countByCity, creatHotel, deleteHotel, getAllHotel, getHotel, updateHotel } from "../controllers/hotel.controller.js"
+import { countByCity, countByType, creatHotel, deleteHotel, getAllHotel, getHotel, updateHotel } from "../controllers/hotel.controller.js"
 import { verifyToken } from "../middleware/verifyToken.js"
 const router = express.Router()
 
@@ -12,6 +12,6 @@ router.get("/", verifyToken, getAllHotel) // everybody can view all hotel
 
 
 router.get("/city/countByCity", verifyToken, countByCity)    // getting hotels by city name 
-router.get("/city/countByType", verifyToken, getAllHotel)    // getting hotels by type 
+router.get("/city/countByType", verifyToken, countByType)    // getting hotels by type 
 
 export default router
