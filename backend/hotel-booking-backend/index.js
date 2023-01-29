@@ -6,6 +6,7 @@ import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 import usersRoute from "./routes/users.js";
 import cookieParser from "cookie-parser";
+import cors from "cors"
 
 mongoose.set("strictQuery", true);
 const app = express();
@@ -34,6 +35,12 @@ app.use(express.json())
 // to accept nested json values
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
+app.use(
+  cors({
+      origin: "http://localhost:3000",
+      credentials: true
+  })
+);
 
 // routes
 app.use(`/api/${v}/auth`, authRoute); //"auth" endpoint for authRoute

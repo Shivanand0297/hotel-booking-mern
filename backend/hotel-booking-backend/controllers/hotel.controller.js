@@ -100,3 +100,33 @@ export const getAllHotel = async (_req, res, next)=>{
         next(err)
     }
 }
+
+
+/********************************
+ * @GET_HOTEL_BY_CITY_NAME
+ * @type - GET
+ * @desc - to get all hotel by city name
+ * @return - hotels obj
+ ********************************/
+
+export const countByCity = async (req, res, next)=>{
+    try {
+        // http://127.0.0.1:8800/api/v1/hotels/countByCity?cities=newdelhi,bangalore,channai,jaipur
+
+        const cities = req.query.cities.split(",")
+
+        //finding hotel for each cities so we need Promise.all
+        const list = await Promise.all(cities.map(city=>{
+
+           /**@costly_operation  return Hotel.find({city: city}).length this is costly operation, because it will look in all the properties of the documents */
+
+           return Hotel.countDocuments({city: city})    // mongodb operation, much faster
+        })) 
+
+        if(!list) return next(errorHandler(400, "Result not found"))
+
+        res.status(200).json(list)
+    } catch (err) {
+        next(err)
+    }
+}

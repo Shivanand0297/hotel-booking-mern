@@ -2,4 +2,5 @@
 
 
 ### Learnings
--
+- $push operator of mongodb to push into any array of the schema field
+- $pull operator of mongodb to pull/remove element from an array of the schema field
