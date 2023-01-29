@@ -12,3 +12,4 @@
 - useLocation to get payload from the useNavigate
 - taking :id in react-route
 - image slider
+- making custom hooks to fetch api data
