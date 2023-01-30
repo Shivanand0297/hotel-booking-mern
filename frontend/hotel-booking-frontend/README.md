@@ -13,3 +13,5 @@
 - taking :id in react-route
 - image slider
 - making custom hooks to fetch api data
+- using context api to store search data and to provide in diff components
+- context api and useReducer to dispatch different auth operations
