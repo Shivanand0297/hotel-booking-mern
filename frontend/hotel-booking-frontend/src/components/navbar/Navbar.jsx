@@ -1,22 +1,25 @@
-import axios from "axios";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import "./navbar.css"
 
 const Navbar = () => {
 
-  const login = async () =>{
+  const { user, dispatch} = useContext(AuthContext)
+  const navigate = useNavigate()
 
+  const handleLogin = () =>{
+    navigate("/login")
+  }
 
-    const userData = {
-      email: "admin@gmail.com",
-      password: "admin",
-    }
+  const handleLogout = () =>{
+    
+    localStorage.removeItem("user")
+    dispatch({
+      type: "LOGOUT"
+    })
+    navigate("/")
 
-    const response = await axios.post("/api/v1/auth/login", userData, {
-        credentials: "include"
-      })
-      console.log(response.data);
   }
 
   return (
@@ -25,10 +28,16 @@ const Navbar = () => {
         <Link to={"/"} style={{color: "inherit", textDecoration: "none" }} >
           <span className="logo">Booking</span>
         </Link>
-        <div className="navItems">
+        
+        { user ? (<span>
+          {user.username }
+          <button className="navButton" onClick={handleLogout} >Logout</button>
+        </span>  ): 
+          
+          (<div className="navItems">
           <button className="navButton">Register</button>
-          <button className="navButton" onClick={login} >Login</button>
-        </div>
+          <button className="navButton" onClick={handleLogin} >Login</button>
+          </div>)}
       </div>
     </div>
   );
