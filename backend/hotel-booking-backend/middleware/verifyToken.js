@@ -11,7 +11,7 @@ export const verifyToken = async (req, _res, next)=>{
         req.cookies.authToken || (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) 
         ){
             token = req.cookies.authToken || req.headers.authorization.split(" ")[1]
-            console.log(req.cookies)
+            // console.log(req.cookies)
         }
         
         if(!token) return next(errorHandler(401, "You are not authenticated"))

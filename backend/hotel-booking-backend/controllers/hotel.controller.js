@@ -1,4 +1,5 @@
 import Hotel from "../models/Hotel.schema.js"
+import Room from "../models/Room.schema.js"
 import { errorHandler } from "../utils/errorHandler.js"
 
 
@@ -159,6 +160,24 @@ export const countByType = async (_req, res, next)=>{
             { type: "Villas", count: villaCount},
             { type: "Cabins", count: cabinCount}
         ])
+    } catch (err) {
+        next(err)
+    }
+}
+
+export const getHotelRooms = async (req, res, next)=>{
+    try {
+        // getting hotel
+        const hotel = await Hotel.findById(req.params.id)
+        // getting details of all the rooms in the hotel
+        const roomList = await Promise.all(hotel.rooms.map(room=>{
+            return Room.findById(room)
+        }))
+
+        res.status(200).json({
+            success: true,
+            roomList
+        })
     } catch (err) {
         next(err)
     }
