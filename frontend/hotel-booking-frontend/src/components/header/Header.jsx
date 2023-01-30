@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -22,6 +22,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 // header css
 import "./header.css";
 import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../../context/SearchContext";
 
 const Header = ({type}) => {
   const [date, setDate] = useState([
@@ -42,7 +43,7 @@ const Header = ({type}) => {
   const [options, setOptions] = useState({
     adult: 1,
     children: 0,
-    room: 1
+    rooms: 1
   })
 
   // to set Destination
@@ -55,9 +56,19 @@ const Header = ({type}) => {
     }))
   }
 
+  const { dispatch } = useContext(SearchContext)
+
   const navigate = useNavigate()
 
   const handleSearch = () =>{
+    dispatch({
+      type: "NEW_SEARCH",
+      payload: {
+        destination,
+        date,
+        options
+      }
+    })
 
     // navigate to /hotels route with this information because we want to show this in the list
     navigate("/hotels", { state: {
@@ -138,7 +149,7 @@ const Header = ({type}) => {
             <FontAwesomeIcon icon={faPerson} className="headerIcon" />
             <span 
             className="headerSearchText" onClick={()=>{setOpenOptions(!openOptions)}} >
-              {`${options.adult} Adult, ${options.children} Children, ${options.room} Room`}
+              {`${options.adult} Adult, ${options.children} Children, ${options.rooms} Room`}
             </span>
             { openOptions && <div className="options">
               <div className="optionItems">
@@ -160,9 +171,9 @@ const Header = ({type}) => {
               <div className="optionItems">
                 <span className="optionItemText">Room</span>
                 <div className="optionCounter">
-                  <button className="optionCounterButton" disabled={options.room <=1}  onClick={()=>{handleChange("room", "d")}} >-</button>
-                  <span className="optionCounterNumber">{options.room}</span>
-                  <button className="optionCounterButton" onClick={()=>{handleChange("room", "i")}} >+</button>
+                  <button className="optionCounterButton" disabled={options.rooms <=1}  onClick={()=>{handleChange("rooms", "d")}} >-</button>
+                  <span className="optionCounterNumber">{options.rooms}</span>
+                  <button className="optionCounterButton" onClick={()=>{handleChange("rooms", "i")}} >+</button>
                 </div>
               </div>
             </div>

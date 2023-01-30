@@ -1,12 +1,13 @@
 import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Footer from '../../components/footer/Footer'
 import Header from '../../components/header/Header'
 import MailList from '../../components/mailList/MailList'
 import Navbar from '../../components/navbar/Navbar'
 import { v } from '../../config/config'
+import { SearchContext } from '../../context/SearchContext'
 import useFetch from '../../hooks/useFetch'
 import "./hotel.css"
 
@@ -25,7 +26,17 @@ const Hotel = () => {
   const id = location.pathname.split("/")[2]
 
   const { data, loading } = useFetch(`/api/${v}/hotels/${id}`)
+  // using useContext to get the values and using them to calculate the price
+  const { date, options } = useContext(SearchContext)
 
+  const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000
+  const dateDifference = (date1, date2) =>{
+     const timeDiff = Math.abs(date2.getTime() - date1.getTime())
+     const dateDiff = Math.ceil(timeDiff / MILLISECONDS_PER_DAY)
+     return dateDiff
+  }
+
+  const nightStay = dateDifference(date[0].endDate, date[0].startDate)
 
   const handleImgModal = (index) =>{
     setSlideNumber(index)
@@ -100,13 +111,14 @@ const Hotel = () => {
               </div>
 
               <div className="hotelDetailsPrice">
-                <h1>Perfect for a 9-night stay!</h1>
+                <h1>Perfect for a {nightStay}-night stay!</h1>
                 <span>
                   Located in the real heart of Krakow, this property has an
                   excellent location score of 9.8!
                 </span>
                 <h2>
-                  <b>$945</b> (9 nights)
+                {/* useContext to access date here */}
+                  <b>${nightStay * data.cheapestPrice * options.rooms}</b> ({nightStay} nights)
                 </h2>
                 <button>Reserve or Book Now!</button>
               </div>
