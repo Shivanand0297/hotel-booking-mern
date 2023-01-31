@@ -5,13 +5,14 @@
 - Work on different component
 
 ## Learning
-- react-date-range picker
+- `react-date-range` picker
 - format js date into customizable format using date-fns module of the node
 - conditional rendering of a component inside different component based on props.
-- useNavigate with some payload
-- useLocation to get payload from the useNavigate
+- `useNavigate` with some payload
+- `useLocation` to get payload from the useNavigate
 - taking :id in react-route
 - image slider
-- making custom hooks to fetch api data
+- Making `custom hooks` to fetch api data
 - using context api to store search data and to provide in diff components
-- context api and useReducer to dispatch different auth operations
+- `Context api` and `useReducer` to dispatch different auth operations
+- JavaScript `Date` object
