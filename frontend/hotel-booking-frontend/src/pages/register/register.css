@@ -1,0 +1,39 @@
+.register {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #8dd0ff;
+  }
+  
+  .rContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .rUsername,.rEmail, .rPassword{
+    height: 30px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+
+  }
+  
+  .rPassword:focus ,
+  .rEmail:focus,
+  .rUsername:focus
+  {
+    outline: 2px solid var(--btn-color);
+  }
+
+  .rButton {
+    border: none;
+    padding: 10px 20px;
+    background-color: #0071c2;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+ 
