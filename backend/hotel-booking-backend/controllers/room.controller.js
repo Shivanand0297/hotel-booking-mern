@@ -141,3 +141,25 @@ export const getAllRoom = async (_req, res, next)=>{
         next(err)
     }
 }
+
+/********************************
+ * @UPDATE_ROOM_AVAILABLITY
+ * @type - PUT
+ * @desc - update the availableDates[] in the room db
+ * @return - updated message
+ ********************************/
+
+export const updateRoomAvailablity = async (req, res, next)=>{
+    try {
+        // finding room numbers id
+         await Room.updateOne({"roomNumbers._id": req.params.id }, {
+            $push: {
+                "roomNumbers.$.unavailableDates" : req.body.dates // $ because we are updating nested properties
+            }
+        })
+
+        res.status(200).json("Room has been updated")
+    } catch (err) {
+        next(err)
+    }
+}
