@@ -13,7 +13,7 @@ const Login = () => {
         password: ""
     })
 
-    const { user, loading, error, dispatch } = useContext(AuthContext)
+    const { loading, error, dispatch } = useContext(AuthContext)
     const navigate = useNavigate()
     const handleChange = e =>{
         setCredentials(prev=>({
@@ -56,13 +56,15 @@ const Login = () => {
 
   return (
     <div className="login">
-        <div className='lcontainer' >
+        <div className='lContainer' >
             <input type="text" name='email' id='email' className="lemail"
             onChange={handleChange}
+            placeholder="Your Email"
             />
             
             <input type="password" name='password' className="lpassword"
-            onChange={handleChange}        
+            onChange={handleChange}
+            placeholder="Your Password"        
             />
 
             <button disabled={loading} className='lButton' onClick={handleLogin}>Login</button>
