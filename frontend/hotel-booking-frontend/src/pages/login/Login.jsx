@@ -31,7 +31,7 @@ const Login = () => {
             const res = await axios.post(`/api/${v}/auth/login`, credentials, {
                 credentials: "include"
                 })
-            dispatch({ type: "LOGIN_SUCCESS", payload: res.data.user })    
+            dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details })    
             toast(res.data.message, {
                 position: "bottom-center",
                 type: "success",

@@ -23,7 +23,7 @@ const Sidebar = () => {
       <div className="top">
 
         <Link to="/" className='link' >
-          <span className="logo">ShivaAdmin</span>
+          <span className="logo">Hotel Admin</span>
         </Link>
 
       </div>
@@ -43,16 +43,18 @@ const Sidebar = () => {
               <span>Users</span>
             </li>
           </Link>
-          <Link to="/products" className='link' >
+          <Link to="/hotels" className='link' >
             <li>
               <InventoryIcon className="icon" />
-              <span>Products</span>
+              <span>Hotels</span>
             </li>
           </Link>
-          <li>
-            <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
-          </li>
+          <Link to="/rooms" className='link' >
+            <li>
+              <LocalShippingIcon className="icon" />
+              <span>Rooms</span>
+            </li>
+          </Link>
           <p>Useful</p>
           <li>
             <QueryStatsIcon  className="icon" />

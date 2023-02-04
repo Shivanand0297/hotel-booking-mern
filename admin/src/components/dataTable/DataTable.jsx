@@ -1,14 +1,42 @@
 import "./dataTable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumn, userRows } from "./dataTableSource";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useFetch from "../../hooks/useFetch";
+import { v } from "../../config/config";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-const DataTable = () => {
-  const [rowData, setRowData] = useState(userRows)
+const DataTable = ({column, item}) => {
 
-  const handleDelete = (id) =>{
-    setRowData(rowData.filter(item=>(item.id !== id)))
+  // to find which page to render
+  const location = useLocation()
+  // getting page end point
+  const path = location.pathname.split("/")[1]
+  const [list, setList] = useState([])
+  const { data } = useFetch(`/api/${v}/${path}`)  //automaticaly detect with page to fetch
+
+  // to update the list as data changes
+  useEffect(()=>{
+
+    setList(data)
+  }, [data])
+
+  const handleDelete = async (id) =>{
+      try{
+        const res = await axios.delete(`/api/${v}/${path}/${id}`) //deleting from backend
+        setList(list.filter(item=>(item._id !== id))) 
+        toast(res.data, {
+          type: "success",
+          position: "bottom-center"
+        })
+      }catch(err){
+        toast(err.message, {
+          type: "error",
+          position: "bottom-center"
+        })
+      }
   }
 
   const actionColumn = [
@@ -22,7 +50,7 @@ const DataTable = () => {
           <Link to="/users/test" className='link' >
             <button className="viewButton" >View</button>
           </Link>
-            <button className="deleteButton" onClick={()=>{handleDelete(params.row.id)}} >Delete</button>
+            <button className="deleteButton" onClick={()=>{handleDelete(params.row._id)}} >Delete</button>
           </div>
         )
       }
@@ -32,17 +60,18 @@ const DataTable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        <span>Current Users</span>
+        <span>Current {item}</span>
         <Link to="/users/new" className='link' >
           <button>Add New</button>
         </Link>
       </div>
       <DataGrid
-        rows={rowData}
-        columns={userColumn.concat(actionColumn)}
+        rows={list}
+        columns={column.concat(actionColumn)}
         pageSize={7}
         rowsPerPageOptions={[7]}
         className="datagrid"
+        getRowId={row=>row._id}
       />
     </div>
   );

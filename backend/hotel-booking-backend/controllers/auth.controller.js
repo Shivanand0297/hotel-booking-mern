@@ -32,8 +32,7 @@ export const register = async (req, res, next)=>{
         const encryptedPassword = await bcrypt.hash(password, 10)
 
         const user = await User.create({
-            username, 
-            email,
+            ...req.body,
             password: encryptedPassword, 
         })
 
@@ -94,13 +93,14 @@ export const login = async (req, res, next)=>{
             })
 
             // removing password before sending the user
-            user.password = undefined
-            user.isAdmin = undefined
-            // const { password, isAdmin, ...otherProps } = user._doc   //another way
+            // user.password = undefined
+            // user.isAdmin = undefined
+            const { password, isAdmin, ...otherDetails } = user._doc   //another way
            return res.status(200).json({
                 success: true,
                 message: "Logged in successfully",
-                user
+                details: otherDetails, 
+                isAdmin
             })
 
         } else{
