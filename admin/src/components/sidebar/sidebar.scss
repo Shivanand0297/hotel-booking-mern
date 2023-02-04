@@ -1,0 +1,109 @@
+.sidebar{
+  flex: 1;
+  min-height: 100vh;
+  background-color: #fff;
+  border-right: .5px solid var(--border-color);
+
+
+  .top{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+      .logo{
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--theme-color);
+      }
+
+  }
+
+  hr{
+    height: 0px;
+    border: .5px solid var(--border-color);
+  }
+
+  .center{
+
+      ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+          li{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            padding: 5px 5px 5px 15px;
+            cursor: pointer;
+
+              .icon{
+                font-size: 18px;
+                color: var(--theme-color);
+              }
+
+          }
+
+          li:hover{
+            background-color: #dfffa9;
+          }
+
+          p{
+            font-size: 10px;
+            font-weight: bold;
+            color: #999999;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            padding-left: 15px;
+          }
+
+          span{
+            font-size: 13px;
+            font-weight: 600;
+            color: #999999;
+          }
+      }
+  } 
+  
+  .bottomTheme{
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+
+    span{
+      font-size: 10px;
+      font-weight: bold;
+      color: #999999;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+    .theme{
+      display: flex;
+    }
+
+    .colorOption{
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      border: 1px solid var(--theme-color);
+      cursor: pointer;
+      margin: 5px 5px 5px 0px;
+    }
+    .light{
+      background-color: #fff;
+    }
+    .dark{
+      background-color: #333;
+    }
+    
+  }
+
+// common to all
+  .link{
+    text-decoration: none;
+  }
+
+}

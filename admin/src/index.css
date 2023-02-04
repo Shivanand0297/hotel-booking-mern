@@ -1,0 +1,17 @@
+* {
+  margin: 0px;
+  border: none;
+  outline: none;
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  --theme-color: #76b900;
+  --border-color: #e2e1e1;
+  --gray-color: #a0a0a0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

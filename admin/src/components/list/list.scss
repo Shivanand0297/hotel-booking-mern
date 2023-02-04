@@ -1,0 +1,31 @@
+.dataTable{
+
+  .cellWrapper{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    .productImg{
+      width: 32px;
+      height: 32px; 
+    }
+    
+  }
+
+  .status{
+
+    padding: 5px;
+    border-radius: 5px;
+
+    &.Approved{
+      color: #008000;
+      background-color: rgba(169, 212, 169, 0.729);
+    }
+    &.Pending{
+      color: #dbac35;
+      background-color: rgba(243, 237, 223, 0.758);
+    }
+    
+  }
+
+}

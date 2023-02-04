@@ -1,0 +1,32 @@
+.home{
+  display: flex;
+
+  .homeContainer{
+    flex: 6;
+
+    .widgets, .charts{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .charts{
+      padding: 0px 20px 0px 20px;
+    }
+
+    .tableContainer{
+      box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+      padding: 10px;
+      margin: 20px;
+      border-radius: 5px;
+
+        .tableTitle{
+          font-weight: bold;
+          color: var(--gray-color);
+          margin-bottom: 15px;
+        }
+    }
+  }
+}

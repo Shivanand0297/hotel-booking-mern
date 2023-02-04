@@ -1,0 +1,173 @@
+.app.dark{
+  background-color: #1a1a1a;
+  transition: all 0.5s ease-in;
+
+    // navbar component
+    .navbar{
+      color: var(--theme-color);
+      border-bottom: .5px solid rgba(167, 167, 167, 0.482);
+
+        .wrapper{
+          .search{
+            border: 0.5px solid rgba(117, 185, 0, 0.38);
+              input{
+                color: #f5f5f5;
+              }
+          }
+        }
+    }
+
+    //widget component
+    .widget{
+      .left, .right{
+          color: var(--gray-color);
+      }
+    }
+
+    // global boxshadow
+    .featured, .chart, .widget, .tableContainer{
+      box-shadow: 2px 4px 10px 1px #75b90061;
+    }
+
+    // featured component
+    .featured{
+
+      .top{
+
+        .titleOptions{
+          color: var(--theme-color);
+        }
+      }
+      .bottom{
+
+          .amount{
+            color: var(--gray-color);
+          }
+      }
+    }
+
+    // chart component
+    .chart{
+      
+        .chartGrid{
+          stroke: #e4e1e192;
+        }
+    }
+
+    //list component
+    .dataTable{
+      background-color: #1a1a1a;
+      transition: all 0.5s ease-in;
+      
+        .tableCell{
+          color: var(--gray-color);
+          border-bottom: .5px solid rgba(167, 167, 167, 0.482);
+        }
+
+        .status{
+          &.Approved{
+            background-color: transparent;
+            border: 1px solid #008000;
+          }
+
+          &.Pending{
+            background-color: transparent;
+            border: 1px solid #dbac35;
+          }
+
+        }
+    }
+
+    // sidebar
+    .sidebar{
+      background-color: #1a1a1a;
+      transition: all 0.5s ease;
+      border-right: 0.5px solid rgba(167, 167, 167, 0.482);
+
+        hr{
+          border: .5px solid rgba(167, 167, 167, 0.482);
+        }
+
+        li:hover{
+          background-color: rgba(0, 0, 0, 0.527);
+        }
+    }
+
+
+    .datatable{
+
+      .datagrid{
+        color: var(--gray-color);
+        border: none;
+      }
+      row{
+        border: none;
+      }
+
+      .cellWithStatus{
+        background: transparent;
+        &.active{
+          color: #008000;
+          border: 1px solid #008000;
+        }
+        &.passive{
+          color: #800000;
+          border: 1px solid #800000;
+        }
+        &.pending{
+          color: #dbac35;
+          border: 1px solid #dbac35;
+        }
+      }
+
+      .cellAction{
+        .viewButton, .deleteButton{
+          background-color: transparent;
+        }
+        .viewButton{
+          color: #8383e6;
+          border: 1px solid #8383e6;
+        }
+        .deleteButton{
+          color: #e68383;
+          border: 1px solid #e68383;
+        }
+      }
+    }
+    
+    // single component
+    .single{
+
+      .left, .bottom{
+        box-shadow: 2px 4px 10px 1px #75b90061;
+
+        .item{
+          .itemValue{
+            color: var(--gray-color);
+          }
+        }
+      }
+    } 
+
+    //new component
+    .new{
+
+        .newContainer{
+
+          .top, .bottom{
+            box-shadow: 2px 4px 10px 1px #75b90061;
+          }
+          .bottom {
+
+              form{
+                color: var(--gray-color);
+                input{
+                  background-color: transparent;
+                  color: var(--gray-color);
+                }
+
+              }
+          }
+        }
+    } 
+}
