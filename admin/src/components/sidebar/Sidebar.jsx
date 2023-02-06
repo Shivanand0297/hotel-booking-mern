@@ -1,7 +1,5 @@
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
-import InventoryIcon from '@mui/icons-material/Inventory';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
@@ -13,6 +11,7 @@ import "./sidebar.scss"
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
+import { Apartment, Bed } from '@mui/icons-material';
 
 const Sidebar = () => {
 
@@ -45,13 +44,13 @@ const Sidebar = () => {
           </Link>
           <Link to="/hotels" className='link' >
             <li>
-              <InventoryIcon className="icon" />
+              <Apartment className="icon" />
               <span>Hotels</span>
             </li>
           </Link>
           <Link to="/rooms" className='link' >
             <li>
-              <LocalShippingIcon className="icon" />
+              <Bed className="icon" />
               <span>Rooms</span>
             </li>
           </Link>

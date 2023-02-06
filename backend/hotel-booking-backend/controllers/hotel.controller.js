@@ -18,7 +18,10 @@ export const creatHotel = async (req, res, next)=>{
         }
 
         const hotel = await Hotel.create(req.body)
-        res.status(200).json(hotel)
+        res.status(200).json({
+            message: "Hotel created",
+            hotel
+        })
     } catch (err) {
         next(err)
     }
@@ -41,7 +44,10 @@ export const updateHotel = async (req, res, next)=>{
         const hotel = await Hotel.findByIdAndUpdate(req.params.id, 
             {$set: req.body}, //mongodb update operator
             {new: true})
-        res.status(200).json(hotel)
+        res.status(200).json({
+            message: "Hotel Updated",
+            hotel
+        })
     } catch (err) {
         next(err)
     }

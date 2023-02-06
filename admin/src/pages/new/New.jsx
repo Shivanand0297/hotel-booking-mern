@@ -1,11 +1,61 @@
 import { UploadFile } from "@mui/icons-material";
+import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
+import { v } from "../../config/config";
 import "./new.scss";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
+
+
+  // for taking user inputs
+  const [info, setInfo] = useState({})
+
+  const handleChange = (e) =>{
+    setInfo(prev=>({ ...prev, [e.target.id]: e.target.value  }))
+    console.log(info)
+  }
+
+  const handleSubmit = async (e) =>{
+    e.preventDefault()
+    // transforming file into form data
+    const data = new FormData()
+    
+    // adding key values pairs
+    data.append("file", file)
+    data.append("upload_preset", "upload")
+    try{
+      // uploading on cloudinary
+      const uploadResponse = await axios.post("https://api.cloudinary.com/v1_1/shiva10/image/upload", data)
+
+      // extracting img url
+      const {url} = uploadResponse.data
+
+      const newUser = {
+        ...info, img: url
+      }
+
+      const res = await axios.post(`/api/${v}/auth/register`, newUser, {
+        credentials: "include"
+      })
+
+      setInfo({})
+
+      toast(res.data.message, {
+        position: "bottom-center",
+        type: "success",
+        autoClose: 2000,
+        theme: "dark"
+    })
+
+    }catch(err){
+      console.log(err)
+    }
+  }
+
   return (
     <div className="new">
       <Sidebar />
@@ -52,13 +102,14 @@ const New = ({ inputs, title }) => {
                     <label htmlFor={input.label}>{input.label}</label>
                     <input
                       type={input.type}
-                      id={input.label}
+                      id={input.id}
                       placeholder={input.placeholder}
+                      onChange={handleChange}
                     />
                   </div>
                 );
               })}
-              <button type="submit">Send</button>
+              <button type="submit" onClick={handleSubmit} >Send</button>
             </form>
           </div>
         </div>

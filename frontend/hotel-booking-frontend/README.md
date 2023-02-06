@@ -16,3 +16,4 @@
 - using context api to store search data and to provide in diff components
 - `Context api` and `useReducer` to dispatch different auth operations
 - JavaScript `Date` object
+- Array.from() for convert into array

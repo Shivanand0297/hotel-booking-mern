@@ -36,7 +36,10 @@ export const createRoom = async(req, res, next)=>{
 
         if(!hotel) return next(errorHandler(400, "Room was not added in the hotel"))
 
-        res.status(200).json({room})
+        res.status(200).json({
+            message: "Room Created successfully",
+            room
+        })
     } catch (err) {
         next(err)
     }
