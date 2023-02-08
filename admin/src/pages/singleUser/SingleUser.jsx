@@ -1,20 +1,28 @@
 import "./singleUser.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import List from "../../components/list/List";
 import Chart from "../../components/chart/Chart";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { v } from "../../config/config";
+import { useEffect, useState } from "react";
+import EditUser from "../../components/editUser/EditUser";
 
 const SingleUser = () => {
 
   const location = useLocation()
   const id = location.pathname.split("/")[2]
 
-  const {data} = useFetch(`/api/${v}/users/${id}`, {
+  const {data , reFetch} = useFetch(`/api/${v}/users/${id}`, {
     credentials: "include"
   })
+
+  // to open and close the edit modal
+  const [openEditForm, setOpenEditForm] = useState(false)
+
+  useEffect(()=>{
+    reFetch()
+  }, [openEditForm])
 
   return (
     <div className="single">
@@ -24,7 +32,7 @@ const SingleUser = () => {
         <div className="top">
 
           <div className="left">
-            <div className="editButton">Edit</div>
+            <div className="editButton" onClick={()=>{setOpenEditForm(!openEditForm)}} >Edit</div>
             <h1 className="title">Information</h1>
             <div className="item">
               <img
@@ -52,6 +60,10 @@ const SingleUser = () => {
                   <span className="itemKey">Country:</span>
                   <span className="itemValue">{data.country}</span>
                 </div>
+                <div className="detailItem">
+                  <span className="itemKey">Admin:</span>
+                  <span className="itemValue">{data.isAdmin ? "Yes" : "No"}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -60,10 +72,17 @@ const SingleUser = () => {
             <Chart aspect={3 / 1} title="User Spending ( Last 6 Months)" />
           </div>
         </div>
-        <div className="bottom">
-        <h1 className="title">Last Transactions</h1>
-          <List/>
+        {/* edit form */}
+        { openEditForm &&
+          <div className="bottom">
+          <EditUser 
+          data={data} 
+          userId={id} 
+          openEditForm={openEditForm} 
+          setOpenEditForm={setOpenEditForm} 
+          />
         </div>
+        }
       </div>
     </div>
   );

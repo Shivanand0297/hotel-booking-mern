@@ -18,7 +18,10 @@ export const updateUser = async (req, res, next)=>{
         const user = await User.findByIdAndUpdate(req.params.id, 
             {$set: req.body}, //mongodb update operator
             {new: true})
-        res.status(200).json(user)
+        res.status(200).json({
+            message: "User Updated Successfully",
+            user
+        })
 
     } catch (err) {
         next(err)
