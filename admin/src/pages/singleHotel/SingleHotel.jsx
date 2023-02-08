@@ -1,12 +1,23 @@
+// components
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import { useLocation } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
-import { v } from "../../config/config";
-import { ArrowBackIosNew, ArrowForwardIos, Close } from "@mui/icons-material";
-import { useRef, useState } from "react";
-import axios from "axios";
 import EditHotel from "../../components/editHotel/EditHotel";
+
+// location hook
+import { useLocation } from "react-router-dom";
+
+// custom hook for making get request
+import useFetch from "../../hooks/useFetch";
+
+// api version
+import { v } from "../../config/config";
+
+// mui icons
+import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
+
+import { useEffect, useRef, useState } from "react";
+
+// main scss file
 import "./singleHotel.scss";
 
 const SingleHotel = () => {
@@ -15,7 +26,7 @@ const SingleHotel = () => {
   const id = location.pathname.split("/")[2];
   let showPhotoDiv = true;
 
-  const { data,} = useFetch(`/api/${v}/hotels/${id}`, {
+  const { data, reFetch} = useFetch(`/api/${v}/hotels/${id}`, {
     credentials: "include",
   });
 
@@ -32,6 +43,9 @@ const SingleHotel = () => {
 
   const [openEditModal, setOpenEditModal] = useState(false);
 
+  useEffect(()=>{
+    reFetch()
+  }, [openEditModal])
 
   return (
     <div className="single">

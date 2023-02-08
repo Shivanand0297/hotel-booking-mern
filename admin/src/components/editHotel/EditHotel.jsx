@@ -1,13 +1,10 @@
-import { Close } from "@mui/icons-material";
-import axios from "axios";
 import React, { useState } from "react";
+import axios from "axios";
+import { Close } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import { v } from "../../config/config";
-import useFetch from "../../hooks/useFetch";
 
 const EditHotel = ({data, setOpenEditModal, hotelId, openEditModal}) => {
-
-  const { reFetch } = useFetch(`/api/${v}/hotels/${hotelId}`)
 
   const [editInputs, setEditInputs] = useState({
     name: data.name,
@@ -32,17 +29,17 @@ const EditHotel = ({data, setOpenEditModal, hotelId, openEditModal}) => {
     e.preventDefault()
 
     try{
-      const res = await axios.put(`/api/${v}/hotels/${hotelId}`, editInputs, {
+      const {data} = await axios.put(`/api/${v}/hotels/${hotelId}`, editInputs, {
         credentials: "include"
       })
 
-      toast(res.data, {
+      toast(data.message, {
         position: "bottom-center",
-        type: "error"
+        type: "success"
       })
 
       setOpenEditModal(false)
-      reFetch()
+      // reFetch()
       
     }catch(err){
       toast(err.message, {
@@ -51,6 +48,8 @@ const EditHotel = ({data, setOpenEditModal, hotelId, openEditModal}) => {
       })
     }
   }
+
+  console.log(editInputs)
 
   return (
     <>
@@ -156,9 +155,7 @@ const EditHotel = ({data, setOpenEditModal, hotelId, openEditModal}) => {
                   onChange={handleEdit}
                 >
                   <option value={true}>Yes</option>
-                  <option defaultValue value={false}>
-                    No
-                  </option>
+                  <option value={false}>No</option>
                 </select>
               </div>
             </div>

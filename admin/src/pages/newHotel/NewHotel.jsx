@@ -141,7 +141,7 @@ const NewHotel = () => {
               })}
               <div className="formInput">
                 <label htmlFor="featured">Featured</label>
-                <select name="featured" id="featured">
+                <select name="featured" id="featured" onChange={handleChange} >
                   <option value={true}>Yes</option>
                   <option value={false}>No</option>
                 </select>
