@@ -7,7 +7,7 @@ import { LightModeOutlined } from "@mui/icons-material";
 
 const Navbar = () => {
   const { darkMode, dispatch } = useContext(ThemeContext);
-
+  
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -27,7 +27,7 @@ const Navbar = () => {
           )}
           <div className="item">
             <img
-              src={JSON.parse(localStorage.getItem("user")).img}
+              src={JSON.parse(localStorage.getItem("user"))?.img || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
               alt=""
               className="avatar"
             />

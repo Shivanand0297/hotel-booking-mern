@@ -14,6 +14,8 @@ import { toast } from 'react-toastify';
 const Sidebar = () => {
   const { dispatch } = useContext(ThemeContext)
   const navigate = useNavigate()
+
+  const {_id} = JSON.parse(localStorage.getItem("user"))
   
   const handleLogout = async () =>{
     localStorage.clear("user")
@@ -77,10 +79,12 @@ const Sidebar = () => {
             </li>
           </Link>
           <p>User</p>
-          <li>
-            <AssignmentIndIcon className="icon" />
-            <span>Profile</span>
-          </li>
+          <Link to={`/users/${_id}`} className='link' >
+            <li>
+              <AssignmentIndIcon className="icon" />
+              <span>Profile</span>
+            </li>
+          </Link>
           <li onClick={handleLogout} >
             <LogoutIcon  className="icon" />
             <span>Logout</span>

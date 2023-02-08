@@ -34,7 +34,7 @@ export const userColumn = [
           {params.row.isAdmin ? (
             <span
               style={{
-                padding: "5px",
+                padding: "2px 5px",
                 width: "80px",
                 borderRadius: "5px",
                 backgroundColor: "transparent",
@@ -47,7 +47,7 @@ export const userColumn = [
           ) : (
             <span
               style={{
-                padding: "5px",
+                padding: "2px 5px",
                 width: "100px",
                 borderRadius: "5px",
                 backgroundColor: "transparent",
