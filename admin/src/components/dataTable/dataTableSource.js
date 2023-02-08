@@ -83,7 +83,7 @@ export const roomColumn = [
   {
     field: "price",
     headerName: "Price",
-    width: 200,
+    width: 100,
   },
   {
     field: "maxPeople",
@@ -93,6 +93,6 @@ export const roomColumn = [
   {
     field: "desc",
     headerName: "Desc",
-    width: 80,
+    width: 250,
   },
 ];

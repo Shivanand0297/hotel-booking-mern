@@ -10,10 +10,9 @@ import { v } from "../../config/config";
 const SingleRoom = () => {
 
   const location = useLocation()
-  const path = location.pathname.split("/")[1]
   const id = location.pathname.split("/")[2]
 
-  const {data} = useFetch(`/api/${v}/${path}/${id}`, {
+  const {data} = useFetch(`/api/${v}/rooms/${id}`, {
     credentials: "include"
   })
 

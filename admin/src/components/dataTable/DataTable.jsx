@@ -57,7 +57,6 @@ const DataTable = ({column, item}) => {
         }
       }
 
-
       try{
         const res = await axios.delete(`/api/${v}/${path}/${id}`) //deleting from backend
         setList(list.filter(item=>(item._id !== id))) 
@@ -77,7 +76,7 @@ const DataTable = ({column, item}) => {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 120,
       renderCell: (params)=>{
         return(
           <div className="cellAction" >
