@@ -1,21 +1,41 @@
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
-import PsychologyIcon from '@mui/icons-material/Psychology';
-import SettingsIcon from '@mui/icons-material/Settings';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LogoutIcon from '@mui/icons-material/Logout';
 import "./sidebar.scss"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
 import { Apartment, Bed } from '@mui/icons-material';
+import axios from 'axios';
+import { v } from '../../config/config';
+import { toast } from 'react-toastify';
 
 const Sidebar = () => {
-
   const { dispatch } = useContext(ThemeContext)
+  const navigate = useNavigate()
+  
+  const handleLogout = async () =>{
+    localStorage.clear("user")
+
+    try{
+      const { data } = await axios.get(`/api/${v}/auth/logout`, {
+        credentials: "include"
+      })
+
+      toast(data.message, {
+        position: "bottom-center",
+        type: "success"
+      })
+      window.location.reload()
+      navigate("/login")
+    }catch(err){
+      toast(err.message, {
+        position: "bottom-center",
+        type: "success"
+      })
+    }
+  }
 
   return (
     <div className="sidebar" >
@@ -30,10 +50,12 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p>Main</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+          <Link to="/" className='link' >
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
+          </Link>
           <p>List</p>
 
           <Link to="/users" className='link' >
@@ -54,34 +76,12 @@ const Sidebar = () => {
               <span>Rooms</span>
             </li>
           </Link>
-          <p>Useful</p>
-          <li>
-            <QueryStatsIcon  className="icon" />
-            <span>Stats</span>
-          </li>
-          <li>
-            <NotificationsActiveIcon className="icon" />
-            <span>Notifications</span>
-          </li>
-          <li>
-            <MonitorHeartIcon  className="icon" />
-            <span>System Health</span>
-          </li>
-          <li>
-            <PsychologyIcon  className="icon" />
-            <span>Logs</span>
-          </li>
-          <p>System</p>
-          <li>
-            <SettingsIcon  className="icon" />
-            <span>Settings</span>
-          </li>
           <p>User</p>
           <li>
             <AssignmentIndIcon className="icon" />
             <span>Profile</span>
           </li>
-          <li>
+          <li onClick={handleLogout} >
             <LogoutIcon  className="icon" />
             <span>Logout</span>
           </li>

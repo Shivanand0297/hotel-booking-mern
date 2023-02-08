@@ -1,10 +1,6 @@
 import "./navbar.scss";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { ThemeContext } from "../../context/ThemeContext";
 import { useContext } from "react";
 import { LightModeOutlined } from "@mui/icons-material";
@@ -20,10 +16,6 @@ const Navbar = () => {
           <SearchOutlinedIcon className="icon" />
         </div>
         <div className="items">
-          <div className="item">
-            <LanguageOutlinedIcon className="icon" />
-            English
-          </div>
           {darkMode ? (
             <div className="item" onClick={() => dispatch({ type: "TOGGLE" })}>
               <DarkModeOutlinedIcon className="icon" />
@@ -34,19 +26,8 @@ const Navbar = () => {
             </div>
           )}
           <div className="item">
-            <NotificationsNoneOutlinedIcon className="icon" />
-            <div className="counter">1</div>
-          </div>
-          <div className="item">
-            <ChatBubbleOutlineOutlinedIcon className="icon" />
-            <div className="counter">2</div>
-          </div>
-          <div className="item">
-            <ListOutlinedIcon className="icon" />
-          </div>
-          <div className="item">
             <img
-              src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={JSON.parse(localStorage.getItem("user")).img}
               alt=""
               className="avatar"
             />

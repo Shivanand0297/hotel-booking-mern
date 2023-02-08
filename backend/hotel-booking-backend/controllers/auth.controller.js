@@ -111,3 +111,19 @@ export const login = async (req, res, next)=>{
         next(err)
     }
 }
+
+
+export const logout = async (req, res, next)=>{
+    try {
+        res.cookie("authToken", null, {
+            expires: new Date(Date.now()),
+            httpOnly: true
+        })
+        res.status(200).json({
+            success: true, 
+            message: "logged out"
+        })
+    } catch (err) {
+        next(err)
+    }
+}
