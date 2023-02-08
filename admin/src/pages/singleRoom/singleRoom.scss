@@ -9,8 +9,8 @@
       display: flex;
       gap: 20px;
 
-      .left {
-        flex: 1;
+      .roomDetails {
+        width: 100%;
         box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
         padding: 20px;
         border-radius: 5px;
@@ -63,9 +63,6 @@
         }
       }
 
-      .right {
-        flex: 2;
-      }
     }
 
     .bottom {

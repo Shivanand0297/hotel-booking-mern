@@ -1,19 +1,17 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState } from "react"
 import { toast } from "react-toastify";
 import { v } from "../../config/config";
-import "./editUser.scss"
-const EditUser = ({ data, userId, openEditForm, setOpenEditForm }) => {
-  // to take user editInputs
-  const [editInputs, setEditInputs] = useState({
-    username: data.username,
-    email: data.email,
-    phone: data.phone,
-    country: data.country,
-    city: data.city,
-    isAdmin: data.isAdmin,  
-  });
+import "./editRoom.scss"
 
+const EditRoom = ({ data, roomId, openEditForm, setOpenEditForm }) =>{
+
+  const [editInputs, setEditInputs] = useState({
+    title: data.title,
+    price: data.price,
+    maxPeople: data.maxPeople,
+    desc: data.desc,  
+  });
 
   const handleEdit = (e) => {
     setEditInputs((prev) => ({
@@ -26,7 +24,7 @@ const EditUser = ({ data, userId, openEditForm, setOpenEditForm }) => {
     e.preventDefault()
 
     try{
-      const {data} = await axios.put(`/api/${v}/users/${userId}`, editInputs, {
+      const {data} = await axios.put(`/api/${v}/rooms/${roomId}`, editInputs, {
         credentials: "include"
       })
 
@@ -45,80 +43,62 @@ const EditUser = ({ data, userId, openEditForm, setOpenEditForm }) => {
     }
   }
 
-  return (
-    <>
-      <h1 className="title">Edit Details</h1>
+
+  return(
+    <div>
+      <h1 className="title">Edit Room</h1>
       <form onSubmit={handleSubmit} >
-        <div className="editUserDetails">
+        <div className="editRoomDetails">
           <div className="detailItem">
             <label htmlFor="username" className="itemKey">
-              Name:
+              Title:
             </label>
             <input
               className="itemValue"
-              id="username"
-              value={editInputs.username}
+              id="title"
+              value={editInputs.title}
               onChange={handleEdit}
             />
           </div>
           <div className="detailItem">
             <label htmlFor="email" className="itemKey">
-              Email:
+              Price:
             </label>
             <input
               className="itemValue"
-              id="email"
-              value={editInputs.email}
+              id="price"
+              value={editInputs.price}
               onChange={handleEdit}
             />
           </div>
           <div className="detailItem">
             <label htmlFor="phone" className="itemKey">
-              Phone:
+              Max People:
             </label>
             <input
               className="itemValue"
-              id="phone"
-              value={editInputs.phone}
+              id="maxPeople"
+              value={editInputs.maxPeople}
               onChange={handleEdit}
             />
           </div>
           <div className="detailItem">
             <label htmlFor="country" className="itemKey">
-              Country:
+              Description:
             </label>
-            <input
+            <textarea
               className="itemValue"
-              id="country"
-              value={editInputs.country}
+              id="desc"
+              cols={30}
+              rows={5}
+              value={editInputs.desc}
               onChange={handleEdit}
             />
-          </div>
-          <div className="detailItem">
-            <label htmlFor="city" className="itemKey">
-              City:
-            </label>
-            <input
-              className="itemValue"
-              id="city"
-              value={editInputs.city}
-              onChange={handleEdit}
-            />
-          </div>
-          <div className="detailItem">
-            <label htmlFor="isAdmin" className="itemKey">
-              Make Admin:
-            </label>
-            <select id="isAdmin" onChange={handleEdit} >
-              <option value={true}>Yes</option>
-              <option value={false}>No</option>
-            </select>
           </div>
           <button type="submit">Update</button>
         </div>
       </form>
-    </>
-  );
-};
-
-export default EditUser;
+    </div>
+  )
+}
+export default EditRoom

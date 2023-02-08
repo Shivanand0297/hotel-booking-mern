@@ -1,20 +1,29 @@
 import "./singleRoom.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import List from "../../components/list/List";
-import Chart from "../../components/chart/Chart";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { v } from "../../config/config";
+import EditRoom from "../../components/editRoom/EditRoom";
+import { format } from "date-fns"
+import { useEffect, useState } from "react";
 
 const SingleRoom = () => {
 
   const location = useLocation()
   const id = location.pathname.split("/")[2]
 
-  const {data} = useFetch(`/api/${v}/rooms/${id}`, {
+  const {data, loading, reFetch} = useFetch(`/api/${v}/rooms/${id}`, {
     credentials: "include"
   })
+
+
+  // to show editmodal 
+  const [openEditForm, setOpenEditForm] = useState(false)
+
+  useEffect(()=>{
+    reFetch()
+  }, [openEditForm])
 
   return (
     <div className="single">
@@ -22,46 +31,66 @@ const SingleRoom = () => {
       <div className="singleContainer">
         <Navbar />
         <div className="top">
-          <div className="left">
-            <div className="editButton">Edit</div>
+
+          <div className="roomDetails">
+            <div className="editButton" onClick={()=>setOpenEditForm(!openEditForm)} >Edit</div>
             <h1 className="title">Information</h1>
             <div className="item">
-              <img
-                src={data.img}
-                alt="avatar"
-                className="itemImg"
-              />
-              <div className="details">
-                <h1 className="itemTitle">{data.username}</h1>
-                <div className="detailItem">
-                  <span className="itemKey">Email:</span>
-                  <span className="itemValue">{data.email}</span>
+
+              { loading ? "Loading..." : (
+                <div className="details">
+                  <h1 className="itemTitle">{data.title}</h1>
+                  <div className="detailItem">
+                    <span className="itemKey">Description:</span>
+                    <span className="itemValue">{data.desc}</span>
+                  </div>
+                  <div className="detailItem">
+                    <span className="itemKey">Max People:</span>
+                    <span className="itemValue">{data.maxPeople}</span>
+                  </div>
+                  <div className="detailItem">
+                    <span className="itemKey">Price:</span>
+                    <span className="itemValue">{data.price}</span>
+                  </div>
+                  <div className="detailItem">
+                    <span className="itemKey">Updated :</span>
+                    <span className="itemValue">{new Date(data.updatedAt).getMinutes() } mins ago</span>
+                  </div>
+                  <div className="detailItem">
+                    <span className="itemKey">Rooms:</span>
+                    {data.roomNumbers &&  data.roomNumbers.map(room=>(
+                      <span className="itemValue" style={{marginRight: "5px"}} >{room.number},</span>
+                    ))}
+                  </div>
+                  <div className="detailItem">
+                    <span className="itemKey" style={{marginBottom: "10px"}} >Unavailable Dates:</span>
+                    {data.roomNumbers &&  data.roomNumbers.map((room, index)=>(
+                      <span className="itemValue" key={index} >{room.unavailableDates.map((date)=>(
+                        <div key={date}>
+                          {format(new Date(date), "do/MMM/yy")}
+                        </div>
+                      ))}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="detailItem">
-                  <span className="itemKey">Phone:</span>
-                  <span className="itemValue">{data.phone}</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">City:</span>
-                  <span className="itemValue">
-                    {data.city}
-                  </span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Country:</span>
-                  <span className="itemValue">{data.country}</span>
-                </div>
-              </div>
+              )}
+              
             </div>
           </div>
-          <div className="right">
-            <Chart aspect={3 / 1} title="User Spending ( Last 6 Months)" />
-          </div>
+          
         </div>
+        {
+          openEditForm &&
         <div className="bottom">
-        <h1 className="title">Last Transactions</h1>
-          <List/>
+          <EditRoom 
+          roomId={id} 
+          openEditForm={openEditForm} 
+          setOpenEditForm={setOpenEditForm} 
+          data={data}
+          />
         </div>
+        }
       </div>
     </div>
   );
