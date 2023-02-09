@@ -37,7 +37,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
 app.use(
   cors({
-      origin: ["https://shivanand-hotel-booking.netlify.app", "https://hotel-admin-dashboard.netlify.app"],
+      origin: "*",
       credentials: true
   })
 );
