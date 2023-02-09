@@ -1,7 +1,6 @@
 import "./singleUser.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import Chart from "../../components/chart/Chart";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { v } from "../../config/config";
@@ -67,10 +66,7 @@ const SingleUser = () => {
               </div>
             </div>
           </div>
-          
-          <div className="right">
-            <Chart aspect={3 / 1} title="User Spending ( Last 6 Months)" />
-          </div>
+
         </div>
         {/* edit form */}
         { openEditForm &&
