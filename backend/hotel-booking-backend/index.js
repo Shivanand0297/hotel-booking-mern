@@ -43,6 +43,9 @@ app.use(
 );
 
 // routes
+app.get("/", (req, res)=>{
+  res.send("welcome home")
+})
 app.use(`/api/${v}/auth`, authRoute); //"auth" endpoint for authRoute
 app.use(`/api/${v}/hotels`, hotelsRoute); //"hotels" endpoint for hotelsRoute
 app.use(`/api/${v}/rooms`, roomsRoute); //"rooms" endpoint for roomsRoute
