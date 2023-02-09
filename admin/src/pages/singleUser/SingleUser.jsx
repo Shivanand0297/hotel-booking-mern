@@ -24,7 +24,7 @@ const SingleUser = () => {
   }, [openEditForm])
 
   return (
-    <div className="single">
+    <div className="singleUser">
       <Sidebar />
       <div className="singleContainer">
         <Navbar />

@@ -17,15 +17,8 @@
         }
     }
 
-    //widget component
-    .widget{
-      .left, .right{
-          color: var(--gray-color);
-      }
-    }
-
     // global boxshadow
-    .featured, .chart, .widget, .tableContainer{
+    .tableContainer{
       box-shadow: 2px 4px 10px 1px #75b90061;
     }
 
@@ -44,14 +37,6 @@
             color: var(--gray-color);
           }
       }
-    }
-
-    // chart component
-    .chart{
-      
-        .chartGrid{
-          stroke: #e4e1e192;
-        }
     }
 
     //list component
@@ -170,4 +155,35 @@
           }
         }
     } 
+
+    // single user component
+    .singleUser, .single{
+
+      .singleContainer{
+
+        .top{
+
+          .left, .hotelInfo{
+            box-shadow: 2px 4px 10px 1px #75b90061;
+            color: var(--gray-color);
+
+          }
+        }
+        
+        .bottom, .photoBottom{
+          box-shadow: 2px 4px 10px 1px #75b90061;
+
+            .editUserDetails{
+              .detailItem{
+                .itemKey{
+                  color: var(--gray-color);
+                }
+              }
+            }
+        }
+      }
+    }
+
+
+
 }
