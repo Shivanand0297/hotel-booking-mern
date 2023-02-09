@@ -163,7 +163,7 @@
 
         .top{
 
-          .left, .hotelInfo{
+          .left, .hotelInfo, .roomDetails{
             box-shadow: 2px 4px 10px 1px #75b90061;
             color: var(--gray-color);
 
@@ -173,7 +173,7 @@
         .bottom, .photoBottom{
           box-shadow: 2px 4px 10px 1px #75b90061;
 
-            .editUserDetails{
+            .editUserDetails, .editRoomDetails{
               .detailItem{
                 .itemKey{
                   color: var(--gray-color);
