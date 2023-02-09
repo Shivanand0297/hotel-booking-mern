@@ -45,6 +45,7 @@ const SingleHotel = () => {
 
   useEffect(()=>{
     reFetch()
+    // eslint-disable-next-line
   }, [openEditModal])
 
   return (

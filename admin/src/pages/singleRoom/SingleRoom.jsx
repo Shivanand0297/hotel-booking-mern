@@ -23,6 +23,7 @@ const SingleRoom = () => {
 
   useEffect(()=>{
     reFetch()
+    // eslint-disable-next-line
   }, [openEditForm])
 
   return (

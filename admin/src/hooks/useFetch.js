@@ -28,6 +28,7 @@ const useFetch = (url) => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [url]);
 
    // if refetching of data is needed

@@ -21,6 +21,7 @@ const SingleUser = () => {
 
   useEffect(()=>{
     reFetch()
+    // eslint-disable-next-line
   }, [openEditForm])
 
   return (
