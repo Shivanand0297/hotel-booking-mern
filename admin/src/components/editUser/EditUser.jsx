@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { v } from "../../config/config";
+import { host, v } from "../../config/config";
 import "./editUser.scss"
 const EditUser = ({ data, userId, openEditForm, setOpenEditForm }) => {
   // to take user editInputs
