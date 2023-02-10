@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import { v } from "../../config/config";
+import { host, v } from "../../config/config";
 import { useEffect, useState } from "react";
 import EditUser from "../../components/editUser/EditUser";
 
@@ -12,7 +12,7 @@ const SingleUser = () => {
   const location = useLocation()
   const id = location.pathname.split("/")[2]
 
-  const {data , reFetch} = useFetch(`/api/${v}/users/${id}`, {
+  const {data , reFetch} = useFetch(`${host}/api/${v}/users/${id}`, {
     credentials: "include"
   })
 

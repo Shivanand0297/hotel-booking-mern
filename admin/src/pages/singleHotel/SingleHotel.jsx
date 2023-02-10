@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
 // api version
-import { v } from "../../config/config";
+import { host, v } from "../../config/config";
 
 // mui icons
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
@@ -26,7 +26,7 @@ const SingleHotel = () => {
   const id = location.pathname.split("/")[2];
   let showPhotoDiv = true;
 
-  const { data, reFetch} = useFetch(`/api/${v}/hotels/${id}`, {
+  const { data, reFetch} = useFetch(`${host}/api/${v}/hotels/${id}`, {
     credentials: "include",
   });
 

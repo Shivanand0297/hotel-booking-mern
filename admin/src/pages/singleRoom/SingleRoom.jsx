@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import { v } from "../../config/config";
+import { host, v } from "../../config/config";
 import EditRoom from "../../components/editRoom/EditRoom";
 import { format } from "date-fns"
 import { useEffect, useState } from "react";
@@ -13,7 +13,7 @@ const SingleRoom = () => {
   const location = useLocation()
   const id = location.pathname.split("/")[2]
 
-  const {data, loading, reFetch} = useFetch(`/api/${v}/rooms/${id}`, {
+  const {data, loading, reFetch} = useFetch(`${host}/api/${v}/rooms/${id}`, {
     credentials: "include"
   })
 

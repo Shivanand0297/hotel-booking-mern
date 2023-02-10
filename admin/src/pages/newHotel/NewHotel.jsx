@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { v } from "../../config/config";
+import { host, v } from "../../config/config";
 import useFetch from "../../hooks/useFetch";
 import { hotelInputs } from "../new/formSource";
 import "./newHotel.scss";
@@ -24,7 +24,7 @@ const NewHotel = () => {
   };
 
   // fetching all the rooms to select
-  const { data, loading } = useFetch(`/api/${v}/rooms/`);
+  const { data, loading } = useFetch(`${host}/api/${v}/rooms/`);
 
   const handleSelect = (e) => {
     // e.target.selectedOptions will give html collections, so making array out of it
@@ -67,7 +67,7 @@ const NewHotel = () => {
         photos: list
       }
 
-      const res = await axios.post(`/api/${v}/hotels`, newHotel, {
+      const res = await axios.post(`${host}/api/${v}/hotels`, newHotel, {
         credentials: "include"
       })
 

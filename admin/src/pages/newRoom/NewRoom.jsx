@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { v } from "../../config/config";
+import { host, v } from "../../config/config";
 import useFetch from "../../hooks/useFetch";
 import { roomInputs } from "../new/formSource";
 import "./newRoom.scss";
@@ -21,7 +21,7 @@ const NewRoom = () => {
   const [roomNo, setRoomNo] = useState([])
 
   // fetching all the rooms to select
-  const { data, loading } = useFetch(`/api/${v}/hotels`);
+  const { data, loading } = useFetch(`${host}/api/${v}/hotels`);
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -32,7 +32,7 @@ const NewRoom = () => {
     e.preventDefault()
     const roomNumbers = roomNo.split(",").map(room=>({number: room}))
     try{
-      const res = await axios.post(`/api/${v}/rooms/${hotelID}`, {...info, roomNumbers}, {credentials: "include"})
+      const res = await axios.post(`${host}/api/${v}/rooms/${hotelID}`, {...info, roomNumbers}, {credentials: "include"})
       
       toast(res.data.message, {
         position: "bottom-center",

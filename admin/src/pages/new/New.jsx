@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { v } from "../../config/config";
+import { host, v } from "../../config/config";
 import "./new.scss";
 
 const New = ({ inputs, title }) => {
@@ -38,7 +38,7 @@ const New = ({ inputs, title }) => {
         ...info, img: url
       }
 
-      const res = await axios.post(`/api/${v}/auth/register`, newUser, {
+      const res = await axios.post(`${host}/api/${v}/auth/register`, newUser, {
         credentials: "include"
       })
 

@@ -26,7 +26,7 @@ const EditUser = ({ data, userId, openEditForm, setOpenEditForm }) => {
     e.preventDefault()
 
     try{
-      const {data} = await axios.put(`/api/${v}/users/${userId}`, editInputs, {
+      const {data} = await axios.put(`${host}/api/${v}/users/${userId}`, editInputs, {
         credentials: "include"
       })
 

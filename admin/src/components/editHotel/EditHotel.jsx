@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Close } from "@mui/icons-material";
 import { toast } from "react-toastify";
-import { v } from "../../config/config";
+import { host, v } from "../../config/config";
 
 const EditHotel = ({data, setOpenEditModal, hotelId, openEditModal}) => {
 
@@ -29,7 +29,7 @@ const EditHotel = ({data, setOpenEditModal, hotelId, openEditModal}) => {
     e.preventDefault()
 
     try{
-      const {data} = await axios.put(`/api/${v}/hotels/${hotelId}`, editInputs, {
+      const {data} = await axios.put(`${host}/api/${v}/hotels/${hotelId}`, editInputs, {
         credentials: "include"
       })
 

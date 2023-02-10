@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
 import { Apartment, Bed } from '@mui/icons-material';
 import axios from 'axios';
-import { v } from '../../config/config';
+import { host, v } from '../../config/config';
 import { toast } from 'react-toastify';
 
 const Sidebar = () => {
@@ -21,7 +21,7 @@ const Sidebar = () => {
     localStorage.clear("user")
 
     try{
-      const { data } = await axios.get(`/api/${v}/auth/logout`, {
+      const { data } = await axios.get(`${host}/api/${v}/auth/logout`, {
         credentials: "include"
       })
 

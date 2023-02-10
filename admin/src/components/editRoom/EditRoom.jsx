@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react"
 import { toast } from "react-toastify";
-import { v } from "../../config/config";
+import { host, v } from "../../config/config";
 import "./editRoom.scss"
 
 const EditRoom = ({ data, roomId, openEditForm, setOpenEditForm }) =>{
@@ -24,7 +24,7 @@ const EditRoom = ({ data, roomId, openEditForm, setOpenEditForm }) =>{
     e.preventDefault()
 
     try{
-      const {data} = await axios.put(`/api/${v}/rooms/${roomId}`, editInputs, {
+      const {data} = await axios.put(`${host}/api/${v}/rooms/${roomId}`, editInputs, {
         credentials: "include"
       })
 

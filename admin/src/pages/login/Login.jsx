@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { host } from '../../config/config'
 import { AuthContext } from '../../context/AuthContext'
 import "./login.scss"
 
@@ -27,13 +28,16 @@ const Login = () => {
             dispatch({ type: "LOGIN_START"})
         
         try {
-            const res = await axios.post(`/api/v1/auth/login`, credentials, {
+            const res = await axios.post(`${host}/api/v1/auth/login`, credentials, {
                 credentials: "include"
                 })
 
             if(res.data.isAdmin){
 
-              dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details })       
+              dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details }) 
+              
+              localStorage.setItem("user", JSON.stringify(res.data.details))
+              
               toast(res.data.message, {
                 position: "bottom-center",
                 type: "success",
