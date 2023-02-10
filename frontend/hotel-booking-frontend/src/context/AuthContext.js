@@ -52,7 +52,8 @@ export const AuthContextProvider = ({children}) =>{
     const [state, dispatch] = useReducer(AuthReducer, initialState)
     // using localstorage to save the user
     useEffect(()=>{
-        localStorage.setItem("user", JSON.stringify(state.user))    // only string values can be saved in the localStorage
+        localStorage.setItem("user", JSON.stringify(state.user)) // only string values can be saved in the localStorage
+        // eslint-disable-next-line    
     }, [state.user])    // whenever user state changes we want to update the localstorage
 
     return(

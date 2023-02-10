@@ -6,7 +6,7 @@ import { host, v } from '../../config/config.js'
 
 const PropertyList = () => {
 
-  const {data, loading, error} = useFetch(`${host}/api/${v}/hotels/city/countByType`) //custom hook
+  const {data, loading} = useFetch(`${host}/api/${v}/hotels/city/countByType`) //custom hook
 
   const images = [
     {
