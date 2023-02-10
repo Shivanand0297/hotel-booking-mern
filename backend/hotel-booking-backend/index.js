@@ -34,13 +34,14 @@ mongoose.connection.on("disconnected", () => {
 app.use(express.json())
 // to accept nested json values
 app.use(express.urlencoded({extended: true}))
-app.use(cookieParser())
 app.use(
   cors({
-      origin: ["http://localhost:3000", "https://hotel-admin-dashboard.netlify.app"],
-      credentials: true
+    origin: ["http://localhost:3000", "https://hotel-admin-dashboard.netlify.app"],
+    credentials: true
   })
-);
+  );
+
+app.use(cookieParser())
 
 // routes
 app.get("/", (req, res)=>{
