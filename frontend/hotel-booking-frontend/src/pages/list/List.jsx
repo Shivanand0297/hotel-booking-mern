@@ -13,9 +13,9 @@ const List = () => {
 
   const location = useLocation()
   // storing the payload from the location object
-  const [destination, setDestination] = useState(location.state.destination)
+  const [destination] = useState(location.state.destination)
   const [date, setDate] = useState(location.state.date)
-  const [options, setOptions] = useState(location.state.options)
+  const [options] = useState(location.state.options)
 
   // to open and close date options
   const [openDate, setOpenDate] = useState(false)
@@ -23,7 +23,7 @@ const List = () => {
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
 
-  const { data, loading, error, reFetch} = useFetch(`${host}/api/${v}/hotels?city=${destination}&min=${minPrice || 1}&max=${maxPrice || 888}`)
+  const { data, loading, reFetch} = useFetch(`${host}/api/${v}/hotels?city=${destination}&min=${minPrice || 1}&max=${maxPrice || 888}`)
 
   const handleSearch = () =>{
     reFetch()
