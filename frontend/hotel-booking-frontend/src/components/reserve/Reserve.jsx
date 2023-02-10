@@ -1,7 +1,7 @@
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
-import { v } from "../../config/config";
+import { host, v } from "../../config/config";
 import useFetch from "../../hooks/useFetch";
 import { SearchContext } from "../../context/SearchContext"
 import "./reserve.css";
@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Reserve = ({ setOpenBookModal, hotel_id }) => {
-    const { data } = useFetch(`/api/${v}/hotels/room/${hotel_id}`);
+    const { data } = useFetch(`${host}/api/${v}/hotels/room/${hotel_id}`);
     const { date } = useContext(SearchContext)
     const navigate = useNavigate()
     // to store the selected room id's
@@ -53,7 +53,7 @@ const Reserve = ({ setOpenBookModal, hotel_id }) => {
         // pushing booking dates in the unavailable dates array
         try {
             await Promise.all(selectRooms.map( async (room_id)=>{
-                await axios.put(`/api/${v}/rooms/availability/${room_id}`, {
+                await axios.put(`${host}/api/${v}/rooms/availability/${room_id}`, {
                     dates: allDates
                 })
                 // success message

@@ -1,11 +1,11 @@
 import React from 'react'
 import useFetch from '../../hooks/useFetch';
 import "./featuredProperties.css"
-import { v } from "../../config/config.js"
+import { host, v } from "../../config/config.js"
 
 const FeaturedProperties = () => {
 
-  const {data, loading, error} = useFetch(`/api/v1/hotels?featured=true&limit=4&min=10&max=200`) //custom hook
+  const {data, loading, error} = useFetch(`${host}/api/v1/hotels?featured=true&limit=4&min=10&max=200`) //custom hook
 
 
 

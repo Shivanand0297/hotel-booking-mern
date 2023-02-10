@@ -7,7 +7,7 @@ import "./list.css"
 import { DateRange } from 'react-date-range'
 import SearchItem from '../../components/searchItem/SearchItem'
 import useFetch from '../../hooks/useFetch'
-import {v} from "../../config/config"
+import {host, v} from "../../config/config"
 
 const List = () => {
 
@@ -23,7 +23,7 @@ const List = () => {
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
 
-  const { data, loading, error, reFetch} = useFetch(`/api/${v}/hotels?city=${destination}&min=${minPrice || 1}&max=${maxPrice || 888}`)
+  const { data, loading, error, reFetch} = useFetch(`${host}/api/${v}/hotels?city=${destination}&min=${minPrice || 1}&max=${maxPrice || 888}`)
 
   const handleSearch = () =>{
     reFetch()

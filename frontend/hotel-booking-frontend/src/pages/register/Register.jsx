@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { v } from '../../config/config'
+import { host, v } from '../../config/config'
 import "./register.css"
 
 const Register = () => {
@@ -25,7 +25,7 @@ const Register = () => {
         e.preventDefault()
         // starting login
         try {
-            const res = await axios.post(`/api/${v}/auth/register`, inputs, {
+            const res = await axios.post(`${host}/api/${v}/auth/register`, inputs, {
                 credentials: "include"
                 })
 

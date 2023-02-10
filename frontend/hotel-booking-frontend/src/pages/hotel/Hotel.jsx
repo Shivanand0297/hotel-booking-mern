@@ -7,7 +7,7 @@ import Header from '../../components/header/Header'
 import MailList from '../../components/mailList/MailList'
 import Navbar from '../../components/navbar/Navbar'
 import Reserve from '../../components/reserve/Reserve'
-import { v } from '../../config/config'
+import { host, v } from '../../config/config'
 import { AuthContext } from '../../context/AuthContext'
 import { SearchContext } from '../../context/SearchContext'
 import useFetch from '../../hooks/useFetch'
@@ -29,7 +29,7 @@ const Hotel = () => {
   // using useLocation to get the hotel id from the url
   const id = location.pathname.split("/")[2]
 
-  const { data, loading } = useFetch(`/api/${v}/hotels/${id}`)
+  const { data, loading } = useFetch(`${host}/api/${v}/hotels/${id}`)
   // using useContext to get the values and using them to calculate the price
   const { date, options } = useContext(SearchContext)
   const { user } = useContext(AuthContext)
