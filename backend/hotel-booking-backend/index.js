@@ -40,7 +40,7 @@ app.use(
       "http://localhost:3000", 
       "https://hotel-admin-dashboard.netlify.app", 
       "https://shivanand-hotel-booking.netlify.app",
-      "https://hotel-booking-frontend.up.railway.app/"
+      "https://hotel-booking-frontend.up.railway.app"
     ],
     credentials: true
   })
