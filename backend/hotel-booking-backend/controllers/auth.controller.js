@@ -92,7 +92,7 @@ export const login = async (req, res, next)=>{
                 httpOnly: true,
                 sameSite: "None",
                 secure: true,
-                domain: "https://hotel-booking-mern.up.railway.app"
+                domain: "railway.app"
             })
 
             // removing password before sending the user
