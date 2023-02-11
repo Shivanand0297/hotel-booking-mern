@@ -42,12 +42,11 @@ app.use(cookieParser())
 // cors middleware
 app.use(
     cors({
-      origin: "https://shivanand-hotel-booking.netlify.app",
+      origin: ["https://shivanand-hotel-booking.netlify.app", 
+      "https://shivanand-hotel-booking.vercel.app/"],
       credentials: true
     })
 );
-
-app.set("trust proxy", 1)
 
 // routes
 app.get("/", (req, res)=>{
