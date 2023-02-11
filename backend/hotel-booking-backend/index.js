@@ -32,29 +32,22 @@ mongoose.connection.on("disconnected", () => {
 /** @middlewares */ 
 // to accept json date from frontend
 app.use(express.json())
+
 // to accept nested json values
 app.use(express.urlencoded({extended: true}))
+
+// to read cookies
 app.use(cookieParser())
 
+// cors middleware
+app.use(
+    cors({
+      origin: "https://shivanand-hotel-booking.netlify.app",
+      credentials: true
+    })
+);
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Origin', "https://shivanand-hotel-booking.netlify.app");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  next();
-});
-
-// app.use(
-//   cors({
-//     origin: [
-//       "https://hotel-admin-dashboard.netlify.app", 
-//       "https://shivanand-hotel-booking.netlify.app",
-//     ],
-//     credentials: true
-//   })
-//   );
-
+app.set("trust proxy", 1)
 
 // routes
 app.get("/", (req, res)=>{
