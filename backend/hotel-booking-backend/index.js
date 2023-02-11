@@ -34,19 +34,26 @@ mongoose.connection.on("disconnected", () => {
 app.use(express.json())
 // to accept nested json values
 app.use(express.urlencoded({extended: true}))
+app.use(cookieParser())
+
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  next();
+});
+
 app.use(
   cors({
     origin: [
-      "http://localhost:3000", 
       "https://hotel-admin-dashboard.netlify.app", 
       "https://shivanand-hotel-booking.netlify.app",
-      "https://hotel-booking-frontend.up.railway.app"
     ],
     credentials: true
   })
   );
 
-app.use(cookieParser())
 
 // routes
 app.get("/", (req, res)=>{
