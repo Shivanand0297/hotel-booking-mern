@@ -90,6 +90,10 @@ export const login = async (req, res, next)=>{
             res.cookie("authToken", token, {
                 expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
                 httpOnly: true,
+                Secure: true,
+                Path:"/",
+                SameSite: "None"
+
             })
 
             // removing password before sending the user
