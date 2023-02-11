@@ -29,10 +29,7 @@ const Login = () => {
         
         try {
             const res = await axios.post(`${host}/api/${v}/auth/login`, credentials, {
-                credentials: "include",
-                headers:{
-                    "Access-Control-Allow-Origin": "https://shivanand-hotel-booking.netlify.app"
-                }
+                credentials: "include"
                 })
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details })    
             toast(res.data.message, {
