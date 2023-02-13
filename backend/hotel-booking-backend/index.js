@@ -45,7 +45,8 @@ app.use(
       origin: [
         "https://shivanand-hotel-booking.netlify.app", 
         "https://hotel-admin-dashboard.netlify.app",
-        "http://localhost:3000"
+        "http://localhost:3000",
+        "http://localhost:3001",
       ],
       credentials: true
     })
