@@ -26,7 +26,10 @@ const Register = () => {
         // starting login
         try {
             const res = await axios.post(`${host}/api/${v}/auth/register`, inputs, {
-                credentials: "include"
+                credentials: "include",
+                headers: {
+                    "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+                  }
                 })
 
             toast(res.data.message, {

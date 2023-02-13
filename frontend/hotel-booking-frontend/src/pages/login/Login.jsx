@@ -28,11 +28,18 @@ const Login = () => {
             dispatch({ type: "LOGIN_START"})
         
         try {
-            const res = await axios.post(`${host}/api/${v}/auth/login`, credentials, {
-                credentials: "include"
+            const {data} = await axios.post(`${host}/api/${v}/auth/login`, credentials, {
+                credentials: "include",
+                headers: {
+                    "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+                  }
                 })
-            dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details })    
-            toast(res.data.message, {
+            dispatch({ type: "LOGIN_SUCCESS", payload: data.details }) 
+
+            //   saving auth token in local storage
+            localStorage.setItem("authorization", JSON.stringify(data.token))
+            
+            toast(data.message, {
                 position: "bottom-center",
                 type: "success",
                 autoClose: 2000,

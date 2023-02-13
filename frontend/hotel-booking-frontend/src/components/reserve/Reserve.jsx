@@ -53,8 +53,14 @@ const Reserve = ({ setOpenBookModal, hotel_id }) => {
         // pushing booking dates in the unavailable dates array
         try {
             await Promise.all(selectRooms.map( async (room_id)=>{
-                await axios.put(`${host}/api/${v}/rooms/availability/${room_id}`, {
+                await axios.put(`${host}/api/${v}/rooms/availability/${room_id}`, 
+                {
                     dates: allDates
+                }, 
+                {   credentials: "include",
+                    headers: {
+                        "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+                    }
                 })
                 // success message
                 toast("Room booked successfully", {
