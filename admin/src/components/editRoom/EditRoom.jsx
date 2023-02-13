@@ -25,7 +25,10 @@ const EditRoom = ({ data, roomId, openEditForm, setOpenEditForm }) =>{
 
     try{
       const {data} = await axios.put(`${host}/api/${v}/rooms/${roomId}`, editInputs, {
-        credentials: "include"
+        credentials: "include",
+        headers: {
+          "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+        }
       })
 
       toast(data.message, {

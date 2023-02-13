@@ -28,17 +28,21 @@ const Login = () => {
             dispatch({ type: "LOGIN_START"})
         
         try {
-            const res = await axios.post(`${host}/api/v1/auth/login`, credentials, {
+            const {data} = await axios.post(`${host}/api/v1/auth/login`, credentials, {
                 credentials: "include"
                 })
 
-            if(res.data.isAdmin){
+            if(data.isAdmin){
 
-              dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details }) 
+              dispatch({ type: "LOGIN_SUCCESS", payload: data.details }) 
               
-              localStorage.setItem("user", JSON.stringify(res.data.details))
+            //   saving user detail to local storage
+              localStorage.setItem("user", JSON.stringify(data.details))
+
+            //   saving auth token in local storage
+              localStorage.setItem("authorization", JSON.stringify(data.token))
               
-              toast(res.data.message, {
+              toast(data.message, {
                 position: "bottom-center",
                 type: "success",
                 autoClose: 2000,

@@ -30,7 +30,10 @@ const EditHotel = ({data, setOpenEditModal, hotelId, openEditModal}) => {
 
     try{
       const {data} = await axios.put(`${host}/api/${v}/hotels/${hotelId}`, editInputs, {
-        credentials: "include"
+        credentials: "include",
+        headers: {
+          "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+        }
       })
 
       toast(data.message, {

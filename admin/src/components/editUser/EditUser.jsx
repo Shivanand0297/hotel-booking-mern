@@ -27,7 +27,10 @@ const EditUser = ({ data, userId, openEditForm, setOpenEditForm }) => {
 
     try{
       const {data} = await axios.put(`${host}/api/${v}/users/${userId}`, editInputs, {
-        credentials: "include"
+        credentials: "include",
+        headers: {
+          "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+        }
       })
 
       toast(data.message, {

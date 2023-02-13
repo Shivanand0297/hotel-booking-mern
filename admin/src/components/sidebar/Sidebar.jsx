@@ -19,6 +19,7 @@ const Sidebar = () => {
   
   const handleLogout = async () =>{
     localStorage.clear("user")
+    localStorage.clear("authorization")
 
     try{
       const { data } = await axios.get(`${host}/api/${v}/auth/logout`, {

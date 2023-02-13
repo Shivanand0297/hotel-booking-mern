@@ -29,7 +29,12 @@ const DataTable = ({column, item}) => {
   const handleDelete = async (id) =>{
 
       if(path === "rooms"){
-        const {data} = await axios.get(`${host}/api/${v}/hotels`, {credentials: "include"})
+        const {data} = await axios.get(`${host}/api/${v}/hotels`, {
+          credentials: "include",
+          headers: {
+            "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+          }
+        })
 
         let hotelId = []
 
@@ -46,10 +51,14 @@ const DataTable = ({column, item}) => {
       try{
           
           await Promise.all(hotelId.map(async hotel_id=>{
-            await axios.delete(`${host}/api/${v}/rooms/${id}/${hotel_id}`, {credentials: "include"})
+            await axios.delete(`${host}/api/${v}/rooms/${id}/${hotel_id}`, {
+              credentials: "include",
+              headers: {
+                "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+              }
+            })
 
           }))
-          console.log(list)
           setList(list.filter(item=>(item._id !== id))) 
 
         }catch(err){
@@ -58,7 +67,13 @@ const DataTable = ({column, item}) => {
       }
 
       try{
-        const res = await axios.delete(`${host}/api/${v}/${path}/${id}`) //deleting from backend
+        const res = await axios.delete(`${host}/api/${v}/${path}/${id}`, {
+          credentials: "include",
+          headers: {
+            "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+          }
+        }) //deleting from backend
+        
         setList(list.filter(item=>(item._id !== id))) 
         toast(res.data, {
           type: "success",

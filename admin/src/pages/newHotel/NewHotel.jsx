@@ -68,7 +68,10 @@ const NewHotel = () => {
       }
 
       const res = await axios.post(`${host}/api/${v}/hotels`, newHotel, {
-        credentials: "include"
+        credentials: "include",
+        headers: {
+          "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+        }
       })
 
       toast(res.data.message, {

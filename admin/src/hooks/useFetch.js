@@ -17,7 +17,10 @@ const useFetch = (url) => {
     setLoading(true);
     try {
       const res = await axios.get(url, {
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+          "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+        }
     });
       setData(res.data);
     } catch (err) {
@@ -36,7 +39,10 @@ const useFetch = (url) => {
     setLoading(true);
     try {
       const res = await axios.get(url, {
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+          "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+        }
     });
       setData(res.data);
     } catch (err) {

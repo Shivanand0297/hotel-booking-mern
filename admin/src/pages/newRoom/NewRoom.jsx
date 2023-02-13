@@ -32,7 +32,12 @@ const NewRoom = () => {
     e.preventDefault()
     const roomNumbers = roomNo.split(",").map(room=>({number: room}))
     try{
-      const res = await axios.post(`${host}/api/${v}/rooms/${hotelID}`, {...info, roomNumbers}, {credentials: "include"})
+      const res = await axios.post(`${host}/api/${v}/rooms/${hotelID}`, {...info, roomNumbers}, {
+        credentials: "include",
+        headers: {
+          "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+        }
+      })
       
       toast(res.data.message, {
         position: "bottom-center",

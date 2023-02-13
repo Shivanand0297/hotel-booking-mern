@@ -103,7 +103,8 @@ export const login = async (req, res, next)=>{
                 success: true,
                 message: "Logged in successfully",
                 details: otherDetails, 
-                isAdmin
+                isAdmin,
+                token
             })
 
         } else{
