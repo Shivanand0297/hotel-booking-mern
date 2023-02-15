@@ -96,7 +96,7 @@ const List = () => {
             </div>
           </div>
           <div className="listResult">
-            { loading ? "Loading" :( 
+            { loading ? "Loading..." :( 
             <>
             { data && data.map(item=>(
                 <SearchItem item={item} key={item._id} />

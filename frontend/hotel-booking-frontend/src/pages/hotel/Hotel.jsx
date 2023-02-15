@@ -76,7 +76,7 @@ const Hotel = () => {
     <div>
       <Navbar/>
       <Header type="list" />
-      {loading ? "Loading" :(
+      {loading ? "Loading..." :(
        <>
         <div className="hotelContainer">
           {/* img slider */}

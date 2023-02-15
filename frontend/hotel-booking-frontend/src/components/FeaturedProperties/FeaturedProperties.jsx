@@ -14,7 +14,7 @@ const FeaturedProperties = () => {
         <div className="fp">
 
           {
-            loading ? "Loading" : (
+            loading ? "Loading..." : (
           <>
             {data && data.map(item=>(
               <Link className='link' to={`/hotels/${item._id}`} key={item._id}>

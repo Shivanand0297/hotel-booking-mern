@@ -14,7 +14,7 @@ const Featured = () => {
     <div className='featured' >
 
         
-      { loading ? "loading..." : (
+      { loading ? "Loading..." : (
         <> 
             <div className="featuredItem">
                 <img className='featuredImg' src="https://cf.bstatic.com/xdata/images/city/600x600/684765.jpg?k=3f7d20034c13ac7686520ac1ccf1621337a1e59860abfd9cbd96f8d66b4fc138&o=" alt="New delhi"/>
