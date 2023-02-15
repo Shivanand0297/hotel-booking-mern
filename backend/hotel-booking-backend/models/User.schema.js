@@ -33,7 +33,8 @@ const UserSchema = new Schema(
         isAdmin: {
             type: Boolean,
             default: false
-        }
+        },
+        paymentDetails: Object
     },
     {
         timestamps: true

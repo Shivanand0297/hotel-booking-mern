@@ -36,6 +36,17 @@
                           align-items: center;
                           gap: 10px;
                         }
+                        
+                        #room{
+                          border: 1px solid var(--theme-color)  ; 
+                          border-radius: 5px;
+                        }
+                        
+                        #hotels{
+                         height: 250px;
+                         border: 1px solid var(--theme-color); 
+                         border-radius: 5px;
+                        }
 
                         input{
                           border-bottom: 1px solid #888;

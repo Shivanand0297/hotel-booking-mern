@@ -29,10 +29,7 @@ const Login = () => {
         
         try {
             const {data} = await axios.post(`${host}/api/${v}/auth/login`, credentials, {
-                credentials: "include",
-                headers: {
-                    "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
-                  }
+                credentials: "include"
                 })
             dispatch({ type: "LOGIN_SUCCESS", payload: data.details }) 
 
@@ -45,8 +42,8 @@ const Login = () => {
                 autoClose: 2000,
                 theme: "dark"
             })
-
-            navigate("/")
+            
+            navigate("/", {state: {...data}})
 
         } catch (err) {
             console.log(err);

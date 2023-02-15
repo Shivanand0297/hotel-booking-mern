@@ -32,13 +32,15 @@ const EditHotel = ({data, setOpenEditModal, hotelId, openEditModal}) => {
       const {data} = await axios.put(`${host}/api/${v}/hotels/${hotelId}`, editInputs, {
         credentials: "include",
         headers: {
-          "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+          "authorization": `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
         }
       })
 
       toast(data.message, {
-        position: "bottom-center",
-        type: "success"
+        position: "bottom-right",
+        type: "success",
+        autoClose: 1000,
+        theme: "dark"
       })
 
       setOpenEditModal(false)
@@ -46,7 +48,7 @@ const EditHotel = ({data, setOpenEditModal, hotelId, openEditModal}) => {
       
     }catch(err){
       toast(err.message, {
-        position: "bottom-center",
+        position: "bottom-right",
         type: "error"
       })
     }
@@ -155,7 +157,7 @@ const EditHotel = ({data, setOpenEditModal, hotelId, openEditModal}) => {
                 <select
                   className="itemValue"
                   id="featured"
-                  onChange={handleEdit}
+                  onClick={handleEdit}
                 >
                   <option value={true}>Yes</option>
                   <option value={false}>No</option>

@@ -30,8 +30,10 @@ const Hotel = () => {
   const id = location.pathname.split("/")[2]
 
   const { data, loading } = useFetch(`${host}/api/${v}/hotels/${id}`)
+
   // using useContext to get the values and using them to calculate the price
   const { date, options } = useContext(SearchContext)
+  console.log(options)
   const { user } = useContext(AuthContext)
 
   const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000
@@ -106,7 +108,7 @@ const Hotel = () => {
               <span>{data.address}</span>
             </div>
             <span className="hotelDistance">{data.distance}</span>
-            <span className="hotelPriceHighlight">Book a stay over ${data.cheapestPrice} at this property and get a free airport taxi</span>
+            <span className="hotelPriceHighlight">Book a stay over ₹{data.cheapestPrice} at this property and get a free airport taxi</span>
             <div className="hotelImages">
               {data.photos?.map((photo, index)=>(
                 <div className="hotelImgWrapper" key={index} >
@@ -126,12 +128,12 @@ const Hotel = () => {
               <div className="hotelDetailsPrice">
                 <h1>Perfect for a {nightStay}-night stay!</h1>
                 <span>
-                  Located in the real heart of Krakow, this property has an
+                  Located in the real heart of city, this property has an
                   excellent location score of 9.8!
                 </span>
                 <h2>
                 {/* useContext to access date here */}
-                  <b>${nightStay * data.cheapestPrice * options.rooms}</b> ({nightStay} nights)
+                  <b>₹{nightStay * data.cheapestPrice * options.rooms}</b> ({nightStay} nights)
                 </h2>
                 <button onClick={handleBook}>Reserve or Book Now!</button>
               </div>
@@ -144,7 +146,11 @@ const Hotel = () => {
       </>
       )}
       { openBookModal && 
-      <Reserve setOpenBookModal={setOpenBookModal} hotel_id={id}/>
+      <Reserve 
+      setOpenBookModal={setOpenBookModal} 
+      hotel_id={id}
+      price={nightStay * data.cheapestPrice * options.rooms}
+      />
       }
     </div>
   )

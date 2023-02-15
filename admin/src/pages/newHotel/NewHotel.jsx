@@ -37,7 +37,6 @@ const NewHotel = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       // first uploading all the images
       const list = await Promise.all(
@@ -57,6 +56,7 @@ const NewHotel = () => {
 
           // extracting img url
           const { url } = uploadResponse.data;
+          
           return url;
         })
       );
@@ -66,7 +66,7 @@ const NewHotel = () => {
         rooms: rooms,
         photos: list
       }
-
+   
       const res = await axios.post(`${host}/api/${v}/hotels`, newHotel, {
         credentials: "include",
         headers: {
@@ -75,9 +75,9 @@ const NewHotel = () => {
       })
 
       toast(res.data.message, {
-        position: "bottom-center",
+        position: "bottom-right",
         type: "success",
-        autoClose: 2000,
+        autoClose: 1000,
         theme: "dark"
     }) 
 
@@ -144,7 +144,7 @@ const NewHotel = () => {
               })}
               <div className="formInput">
                 <label htmlFor="featured">Featured</label>
-                <select name="featured" id="featured" onChange={handleChange} >
+                <select name="featured" id="featured" onClick={handleChange} >
                   <option value={true}>Yes</option>
                   <option value={false}>No</option>
                 </select>

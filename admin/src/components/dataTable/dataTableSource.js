@@ -96,9 +96,19 @@ export const hotelColumn = [
     width: 250,
   },
   {
+    field: "featured",
+    headerName: "Featured",
+    width: 100,
+    renderCell: (params)=>{
+      return(
+        params.row.featured ? "Yes" : "No"
+      )
+    }
+  },
+  {
     field: "type",
     headerName: "Type",
-    width: 80,
+    width: 100,
   },
   {
     field: "city",

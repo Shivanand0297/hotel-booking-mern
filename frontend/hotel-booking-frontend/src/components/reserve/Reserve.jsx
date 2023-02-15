@@ -1,20 +1,26 @@
+// mui icons import
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import { host, v } from "../../config/config";
 import useFetch from "../../hooks/useFetch";
 import { SearchContext } from "../../context/SearchContext"
 import "./reserve.css";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
-const Reserve = ({ setOpenBookModal, hotel_id }) => {
+const Reserve = ({ setOpenBookModal, hotel_id, price }) => {
+
+    // getting room information
     const { data } = useFetch(`${host}/api/${v}/hotels/room/${hotel_id}`);
     const { date } = useContext(SearchContext)
     const navigate = useNavigate()
+
     // to store the selected room id's
     const [selectRooms, setSelectRooms] = useState([]);
+
     // storing selectRooms id
     const handleSelect = (e) => {
         const checked = e.target.checked;
@@ -62,13 +68,11 @@ const Reserve = ({ setOpenBookModal, hotel_id }) => {
                         "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
                     }
                 })
-                // success message
-                toast("Room booked successfully", {
-                    position: "bottom-center",
-                    type: "success"
-                })
+
                 setOpenBookModal(false)
-                navigate("/")
+
+                // payment integration
+                navigate("/payment", {state: {price}})
 
             }))
 
@@ -86,7 +90,7 @@ const Reserve = ({ setOpenBookModal, hotel_id }) => {
                     className="rclose"
                     onClick={() => setOpenBookModal(false)}
                 />
-                <span>Select your rooms:</span>
+                <span>Available Rooms:</span>
                 {data.roomList?.map((room) => (
                     <div className="rItem" key={room._id}>
                         <div className="rItemInfo">
@@ -104,6 +108,7 @@ const Reserve = ({ setOpenBookModal, hotel_id }) => {
                                     type="checkbox"
                                     name="id"
                                     id="id"
+                                    className="roomCheckedBox"
                                     value={roomNumber._id}
                                     onChange={handleSelect}
                                     disabled={!isAvailable(roomNumber)} 

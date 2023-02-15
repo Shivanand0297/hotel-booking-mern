@@ -12,10 +12,12 @@
 
 .rcontainer{
     padding: 20px;
+    min-height: fit-content;
+    overflow-y: scroll;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     background-color: #fff;
 
@@ -33,7 +35,7 @@
     display: flex;
     align-items: center;
     gap: 50px;
-    padding: 20px;
+    padding: 5px;
 }
 
 .rItemInfo{
@@ -79,4 +81,7 @@ font-weight: 500;
     font-size: 10px;
     align-items: center;
     justify-content: center;
+}
+.roomCheckedBox:disabled{
+    cursor: not-allowed;
 }

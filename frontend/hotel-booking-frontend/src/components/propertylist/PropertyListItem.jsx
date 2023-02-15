@@ -10,7 +10,7 @@ const PropertyListItem = ({src, type, count}) => {
         />
         <div className="pListTitles">
           <h1>{type}</h1>
-          <h2>{count}</h2>
+          <h2>{count} Properties </h2>
         </div>
       </div>
   )

@@ -23,7 +23,7 @@ const List = () => {
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
 
-  const { data, loading, reFetch} = useFetch(`${host}/api/${v}/hotels?city=${destination}&min=${minPrice || 1}&max=${maxPrice || 888}`)
+  const { data, loading, reFetch} = useFetch(`${host}/api/${v}/hotels?city=${destination}&min=${minPrice || 1}&max=${maxPrice || 4000}`)
 
   const handleSearch = () =>{
     reFetch()
@@ -67,7 +67,7 @@ const List = () => {
 
               <div className="lsOptionItem">
                 <span className="lsOptionText">
-                  Max Price <small>per night</small>
+                  Max Price ₹ <small>per night</small>
                 </span>
                 <input type="number" onChange={e=>setMaxPrice(e.target.value)}  className='lsOptionInput'/>
               </div>

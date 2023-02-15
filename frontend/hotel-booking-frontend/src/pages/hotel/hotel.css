@@ -51,15 +51,18 @@
   .hotelImages {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 5px;
   }
   
   .hotelImgWrapper {
-    width: 33%;
+    width: 335px;
+    height: 335px;
   }
   
   .hotelImg {
     width: 100%;
+    height: 100%;
     object-fit: cover;
     cursor: pointer;
   }

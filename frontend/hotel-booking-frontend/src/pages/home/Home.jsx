@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 import Featured from '../../components/featured/Featured'
 import FeaturedProperties from '../../components/FeaturedProperties/FeaturedProperties'
 import Footer from '../../components/footer/Footer'
@@ -9,9 +10,12 @@ import PropertyList from "../../components/propertylist/PropertyList"
 import "./home.css"
 
 const Home = () => {
+
+  const {state} = useLocation()
+
   return (
     <div>
-      <Navbar/>
+      <Navbar isAdmin={state?.isAdmin} />
       <Header/>
       <div className="homeContainer">
         <Featured/>

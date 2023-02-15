@@ -89,7 +89,9 @@ const NewRoom = () => {
                 </div>
                 <div className="formInput">
                   <label htmlFor="hotels">Hotels</label>
-                  <select name="hotels" id="hotels" onChange={e=>setHotelID(e.target.value)}>
+                  <select name="hotels" id="hotels" 
+                  multiple 
+                  onChange={e=>setHotelID(e.target.value)}>
                     {loading ? "loading" : data && data.map(hotel=>(
                         <option value={hotel._id} key={hotel._id}>{hotel.name}</option>
                     ))}

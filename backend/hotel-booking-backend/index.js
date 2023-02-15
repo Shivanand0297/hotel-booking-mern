@@ -1,11 +1,21 @@
+// for making express app
 import express from "express";
+
+// for connecting to mongodb
 import mongoose from "mongoose";
 import config from "./config/index.js";
+
+// app routes
 import authRoute from "./routes/auth.js";
 import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 import usersRoute from "./routes/users.js";
+import paymentRoute from "./routes/payment.js";
+
+// cookieParser to read cookies
 import cookieParser from "cookie-parser";
+
+// to enable cross origin request
 import cors from "cors"
 
 mongoose.set("strictQuery", true);
@@ -53,13 +63,14 @@ app.use(
 );
 
 // routes
-app.get("/", (req, res)=>{
+app.get("/", (_req, res)=>{
   res.send("welcome home")
 })
 app.use(`/api/${v}/auth`, authRoute); //"auth" endpoint for authRoute
 app.use(`/api/${v}/hotels`, hotelsRoute); //"hotels" endpoint for hotelsRoute
 app.use(`/api/${v}/rooms`, roomsRoute); //"rooms" endpoint for roomsRoute
 app.use(`/api/${v}/users`, usersRoute); //"users" endpoint for usersRoute
+app.use(`/api/${v}/razorpay`, paymentRoute); 
 
 // error handler middleware
 app.use((err, _req, res, next)=>{

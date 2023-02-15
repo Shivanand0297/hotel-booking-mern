@@ -90,6 +90,9 @@
                         &:hover{
                           background-color: #6ba901;
                         }
+                        &:disabled{
+                          cursor: not-allowed;
+                        }
                     }
                 }
             }

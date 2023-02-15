@@ -7,7 +7,7 @@ import { host, v } from '../../config/config.js'
 
 const Featured = () => {
 
-     const {data, loading} = useFetch(`${host}/api/${v}/hotels/city/countByCity?cities=newdelhi,bangalore,channai,jaipur`) //custom hook
+     const {data, loading} = useFetch(`${host}/api/${v}/hotels/city/countByCity?cities=newdelhi,Bengaluru,chennai,jaipur`) //custom hook
 
 
   return (
@@ -33,7 +33,7 @@ const Featured = () => {
             <div className="featuredItem">
                 <img className='featuredImg' src="https://cf.bstatic.com/xdata/images/city/600x600/684730.jpg?k=e37b93d88c1fe12e827f10c9d6909a1def7349be2c68df5de885deaa4bc01ee3&o=" alt="Channai" />
                 <div className="featuredTitle">
-                    <h1>Channai</h1>
+                    <h1>Chennai</h1>
                     <h2>{data[2]} Properties</h2>
                 </div>
             </div>
