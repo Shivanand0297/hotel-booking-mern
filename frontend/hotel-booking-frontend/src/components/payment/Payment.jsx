@@ -63,7 +63,7 @@ const Payment = () => {
     });
   };
 
-  const DEV = document.domain === "localhost";
+  // const DEV = document.domain === "localhost";
 
   const displayRazorpay = async () => {
     // 2️⃣ loading script dynamically
@@ -86,7 +86,7 @@ const Payment = () => {
     // options for the popup
     const options = {
       // if in production take production key otherwise take test keys
-      key: DEV ? RAZORPAY_KEY : "Production-key",
+      key: RAZORPAY_KEY,
       amount: data.amount, //taking amount from the response data
       currency: data.currency,
       order_id: data.id,
