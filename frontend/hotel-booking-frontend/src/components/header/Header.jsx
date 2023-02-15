@@ -113,8 +113,9 @@ const Header = ({type}) => {
           Get rewarded for your travels - unlock instant saving of 10% or more
           with free booking
         </p>
-        <b className="headerDesc">
-          Currently serving in newdelhi, mumbai, jaipur, chennai and Bengaluru.</b>
+        <p><b className="headerDesc">
+          Currently serving in newdelhi, mumbai, jaipur, chennai and Bengaluru.
+        </b></p>
         { !user && <button className="headerBtn">Sign in / Register</button>}
         <div className="headerSearch">
           <div className="headerSearchItem">
