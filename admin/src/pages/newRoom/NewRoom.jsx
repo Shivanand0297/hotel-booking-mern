@@ -92,7 +92,7 @@ const NewRoom = () => {
                   <select name="hotels" id="hotels" 
                   multiple 
                   onChange={e=>setHotelID(e.target.value)}>
-                    {loading ? "loading" : data && data.map(hotel=>(
+                    {loading ? "Loading..." : data && data.map(hotel=>(
                         <option value={hotel._id} key={hotel._id}>{hotel.name}</option>
                     ))}
                   </select>
