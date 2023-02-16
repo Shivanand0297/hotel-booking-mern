@@ -7,10 +7,10 @@ const router = express.Router()
 router.post("/", verifyToken, creatHotel)    // only admin can create hotel
 router.put("/:id", verifyToken, updateHotel) // only admin can update hotel
 router.delete("/:id", verifyToken, deleteHotel) // only admin can delete hotel
-router.get("/:id", verifyToken, getHotel) // everybody can view a hotel
-router.get("/", verifyToken, getAllHotel) // everybody can view all hotel
-router.get("/city/countByCity", verifyToken, countByCity)    // getting hotels by city name 
-router.get("/city/countByType", verifyToken, countByType)    // getting hotels by type 
-router.get("/room/:id", verifyToken, getHotelRooms)        
+router.get("/:id", getHotel) // everybody can view a hotel
+router.get("/", getAllHotel) // everybody can view all hotel
+router.get("/city/countByCity", countByCity)    // getting hotels by city name 
+router.get("/city/countByType", countByType)    // getting hotels by type 
+router.get("/room/:id", getHotelRooms)        
 
 export default router
