@@ -7,14 +7,16 @@
   }
   
   .lContainer {
+    padding: 10px;
     display: flex;
+    width: 410px;
     flex-direction: column;
     gap: 10px;
   }
   
   .lemail, .lpassword{
     height: 30px;
-    width: 200px;
+    width: 100%;
     padding: 10px;
     border-radius: 5px;
 
@@ -32,9 +34,16 @@
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
+    margin-bottom: 20px;
   }
   
   .lButton:disabled{
     background-color: #0071c28c;
     cursor: not-allowed;
+  }
+
+  .registerLink{
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
   }

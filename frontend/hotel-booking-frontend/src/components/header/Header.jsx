@@ -26,6 +26,8 @@ import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
 
 const Header = ({type}) => {
+
+  // for taking date inputs
   const [date, setDate] = useState([
     {
       startDate: new Date(),  //to formate into date formate we need format function of datefns
@@ -57,10 +59,11 @@ const Header = ({type}) => {
     }))
   }
 
+  // using search context to dispatch search and save it
   const { dispatch } = useContext(SearchContext)
   const { user } = useContext(AuthContext)
 
-
+// using navigate to move to the search result page with the search inputs in state
   const navigate = useNavigate()
 
   const handleSearch = () =>{

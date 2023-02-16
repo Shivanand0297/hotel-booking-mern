@@ -23,7 +23,7 @@ const Register = () => {
 
     const handleRegister = async (e) =>{
         e.preventDefault()
-        // starting login
+        // starting register
         try {
             const res = await axios.post(`${host}/api/${v}/auth/register`, inputs, {
                 credentials: "include",

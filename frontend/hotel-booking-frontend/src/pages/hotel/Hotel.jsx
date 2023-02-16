@@ -19,10 +19,11 @@ const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0)
     // console.log(slideNumber);
 
-  // to open and close the slide modal
+  // to open and close the slide modal and book modal
   const [openImgModal, setOpenImgModal] = useState(false)
   const [openBookModal, setOpenBookModal] = useState(false)
 
+  // using useLocation to get the hotel id
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -33,7 +34,9 @@ const Hotel = () => {
 
   // using useContext to get the values and using them to calculate the price
   const { date, options } = useContext(SearchContext)
-  console.log(options)
+  // console.log(options)
+
+  // to get the logged in user
   const { user } = useContext(AuthContext)
 
   const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000
@@ -43,6 +46,7 @@ const Hotel = () => {
      return dateDiff
   }
 
+  // calculating night stay
   const nightStay = dateDifference(date[0].endDate, date[0].startDate)
 
   const handleImgModal = (index) =>{
@@ -65,6 +69,7 @@ const Hotel = () => {
   }
 
   const handleBook = () =>{
+    // if user is logged in then allow him to book
     if(user){
       setOpenBookModal(true)
     }else{

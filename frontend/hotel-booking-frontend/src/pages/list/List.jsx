@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { format } from "date-fns"
 import Header from '../../components/header/Header'
@@ -8,12 +8,13 @@ import { DateRange } from 'react-date-range'
 import SearchItem from '../../components/searchItem/SearchItem'
 import useFetch from '../../hooks/useFetch'
 import {host, v} from "../../config/config"
+import { SearchContext } from '../../context/SearchContext'
 
 const List = () => {
 
   const location = useLocation()
   // storing the payload from the location object
-  const [destination] = useState(location.state.destination)
+  const [destination, setDestination] = useState(location.state.destination)
   const [date, setDate] = useState(location.state.date)
   const [options] = useState(location.state.options)
 
@@ -23,9 +24,22 @@ const List = () => {
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
 
+  // making fetch request for search
   const { data, loading, reFetch} = useFetch(`${host}/api/${v}/hotels?city=${destination}&min=${minPrice || 1}&max=${maxPrice || 4000}`)
 
+  // using search context for dispatching new search
+  const {dispatch}  = useContext(SearchContext)
+
   const handleSearch = () =>{
+    // dispatching new search
+    dispatch({
+      type: "NEW_SEARCH",
+      payload: {
+        destination,
+        date,
+        options
+      }
+    })
     reFetch()
   }
 
@@ -40,7 +54,12 @@ const List = () => {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label htmlFor='destination' >Destination</label>
-              <input id='destination' placeholder={destination} type="text"/>
+              <input id='destination' 
+              placeholder={destination} 
+              type="text"
+              value={destination}  
+              onChange={e=>{setDestination(e.target.value)}}
+              />
             </div>
             <div className="lsItem">
               <label>Check-in Date</label>

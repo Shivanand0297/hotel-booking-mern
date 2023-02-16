@@ -18,7 +18,7 @@ const Reserve = ({ setOpenBookModal, hotel_id, price }) => {
     const { date } = useContext(SearchContext)
     const navigate = useNavigate()
 
-    // to store the selected room id's
+    // to store the selected room id's on clicking checkboxes
     const [selectRooms, setSelectRooms] = useState([]);
 
     // storing selectRooms id
@@ -45,6 +45,7 @@ const Reserve = ({ setOpenBookModal, hotel_id, price }) => {
         return dateList
     }
 
+    // all selected dates by the user
     const allDates = datesInRange(date[0].startDate, date[0].endDate);
 
     // checking room availablity

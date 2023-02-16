@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { host, v } from '../../config/config'
 import { AuthContext } from '../../context/AuthContext'
@@ -74,6 +74,7 @@ const Login = () => {
             <button disabled={loading} className='lButton' onClick={handleLogin}>Login</button>
             { error && <span>{error}</span>
             }
+            <Link className='registerLink' to="/register">Click here to create your account if you haven't already</Link>
         </div>
     </div>
   )
