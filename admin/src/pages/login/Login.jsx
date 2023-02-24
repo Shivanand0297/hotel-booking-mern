@@ -8,6 +8,7 @@ import "./login.scss"
 
 const Login = () => {
 
+    // taking login details
     const [credentials, setCredentials] = useState({
         email: "",
         password: ""
@@ -31,7 +32,8 @@ const Login = () => {
             const {data} = await axios.post(`${host}/api/v1/auth/login`, credentials, {
                 credentials: "include"
                 })
-
+            
+            // checking if the user is admin or not 
             if(data.isAdmin){
 
               dispatch({ type: "LOGIN_SUCCESS", payload: data.details }) 

@@ -19,6 +19,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 // auth and theme context
 import { ThemeContext } from "./context/ThemeContext"
 import { AuthContext } from "./context/AuthContext"
+
 import { useContext } from "react"
 
 // toastify container and css
@@ -30,13 +31,15 @@ import "./theme/darkTheme.scss"
 
 
 const App = () => {
+  // extracting darkMode from ThemeContext
   const {darkMode} = useContext(ThemeContext)
 
+  // extracting logged in user from AuthContext
   const {user} = useContext(AuthContext)
 
   // function to protect route
   const ProtectedRoutes = ({children}) =>{
-    // if no admin
+    // if not admin
     if(!user){
       return <Navigate to="/login" />
     }

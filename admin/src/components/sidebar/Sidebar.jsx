@@ -1,15 +1,23 @@
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonIcon from '@mui/icons-material/Person';
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-import LogoutIcon from '@mui/icons-material/Logout';
-import "./sidebar.scss"
-import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { ThemeContext } from '../../context/ThemeContext';
+// mui icons
 import { Apartment, Bed } from '@mui/icons-material';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import LogoutIcon from '@mui/icons-material/Logout';
+import PersonIcon from '@mui/icons-material/Person';
+
+// axios for making api calls
 import axios from 'axios';
-import { host, v } from '../../config/config';
+
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
+// getting host url and api version
+import { host, v } from '../../config/config';
+
+// getting theme context
+import { ThemeContext } from '../../context/ThemeContext';
+import "./sidebar.scss";
 
 const Sidebar = () => {
   const { dispatch } = useContext(ThemeContext)
