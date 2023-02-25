@@ -21,7 +21,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 
 // header css
 import "./header.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -119,7 +119,7 @@ const Header = ({type}) => {
         <p><b className="headerDesc">
           Currently serving in newdelhi, mumbai, jaipur, chennai and Bengaluru.
         </b></p>
-        { !user && <button className="headerBtn">Sign in / Register</button>}
+        { !user && <Link to="/register" > <button className="headerBtn">Sign in / Register</button></Link>}
         <div className="headerSearch">
           <div className="headerSearchItem">
             <FontAwesomeIcon icon={faBed} className="headerIcon" />

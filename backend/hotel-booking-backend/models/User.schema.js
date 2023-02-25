@@ -34,7 +34,7 @@ const UserSchema = new Schema(
             type: Boolean,
             default: false
         },
-        paymentDetails: Object
+        paymentId: String
     },
     {
         timestamps: true

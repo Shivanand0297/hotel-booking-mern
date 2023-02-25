@@ -102,6 +102,24 @@ const Payment = () => {
 
         // TODO: make a api call to update user
 
+        const {data} = await axios.put(`${host}/api/${v}/users/${user._id}`, 
+        {
+          paymentId: response.razorpay_payment_id
+        }, 
+        {
+          credentials: "include",
+          headers: {
+            "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`
+          }
+        })
+
+        // user updated
+        toast(data.message, {
+          position: "bottom-center",
+          type: "success",
+          theme: "dark"
+        })
+
          // success message
          toast("Payment successful", {
           position: "bottom-center",

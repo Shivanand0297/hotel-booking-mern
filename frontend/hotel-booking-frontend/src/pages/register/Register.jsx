@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { host, v } from '../../config/config'
 import "./register.css"
@@ -71,6 +71,7 @@ const Register = () => {
             />
 
             <button className='rButton' onClick={handleRegister}>Register</button>
+            <Link className='registerLink' to="/login">Already have an account?. Click to login</Link>
         </div>
     </div>
   )
