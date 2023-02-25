@@ -57,7 +57,7 @@ const NewHotel = () => {
           // extracting img url
           const { url } = uploadResponse.data;
           
-          return url;
+          return url;   // for each image we are returning the url from map method
         })
       );
 

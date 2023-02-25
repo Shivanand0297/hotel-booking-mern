@@ -2,6 +2,13 @@ import Room from "../models/Room.schema.js"
 import Hotel from "../models/Hotel.schema.js"
 import { errorHandler } from "../utils/errorHandler.js"
 
+/********************************
+ * @CREATE_ROOM
+ * @type - POST
+ * @desc - create the Room in the db
+ * @return - Created Room
+ ********************************/
+
 export const createRoom = async(req, res, next)=>{
     try {
 
