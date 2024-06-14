@@ -53,8 +53,8 @@ app.use(cookieParser())
 app.use(
     cors({
       origin: [
-        "https://shivanand-hotel-booking.netlify.app", 
-        "https://hotel-admin-dashboard.netlify.app",
+        "https://hotel-booking-mern-flame.vercel.app", 
+        "https://hotel-booking-admin-delta.vercel.app/",
         "http://localhost:3000",
         "http://localhost:3001",
       ],
