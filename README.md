@@ -14,7 +14,7 @@
 
 <br>
 
-***[Click here to see live](https://shivanand-hotel-booking.netlify.app)***
+***[Click here to see live](https://hotel-booking-mern-flame.vercel.app)***
 
 ***[Project introduction video](https://www.youtube.com/watch?v=ryjh2uTD1mg)***
 
