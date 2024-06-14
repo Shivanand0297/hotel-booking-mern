@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 // config constants
-import { host, RAZORPAY_KEY, v } from "../../config/config";
+import { CONFIG } from "../../config/config";
 
 // importing auth context to get user
 import { AuthContext } from "../../context/AuthContext";
@@ -74,7 +74,7 @@ const Payment = () => {
       return alert("Razorpay SDK faild to load are you online?");
     }
 
-    const {data} = await axios.post(`${host}/api/${v}/razorpay/payment`, 
+    const {data} = await axios.post(`${CONFIG.REACT_APP_HOST}/api/${CONFIG.REACT_APP_V}/razorpay/payment`, 
       paymentOptions, 
       {
         headers: {
@@ -86,7 +86,7 @@ const Payment = () => {
     // options for the popup
     const options = {
       // if in production take production key otherwise take test keys
-      key: RAZORPAY_KEY,
+      key: CONFIG.REACT_APP_RAZORPAY_KEY,
       amount: data.amount, //taking amount from the response data
       currency: data.currency,
       order_id: data.id,
@@ -102,7 +102,7 @@ const Payment = () => {
 
         // TODO: make a api call to update user
 
-        const {data} = await axios.put(`${host}/api/${v}/users/${user._id}`, 
+        const {data} = await axios.put(`${CONFIG.REACT_APP_HOST}/api/${CONFIG.REACT_APP_V}/users/${user._id}`, 
         {
           paymentId: response.razorpay_payment_id
         }, 

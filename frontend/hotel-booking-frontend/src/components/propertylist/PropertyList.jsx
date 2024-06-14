@@ -2,11 +2,11 @@ import React from "react";
 import useFetch from "../../hooks/useFetch";
 import "./propertyList.css";
 import PropertyListItem from "./PropertyListItem";
-import { host, v } from '../../config/config.js'
+import { CONFIG } from '../../config/config.js'
 
 const PropertyList = () => {
 
-  const {data, loading} = useFetch(`${host}/api/${v}/hotels/city/countByType`) //custom hook
+  const {data, loading} = useFetch(`${CONFIG.REACT_APP_HOST}/api/${CONFIG.REACT_APP_V}/hotels/city/countByType`) //custom hook
 
   const images = [
     {

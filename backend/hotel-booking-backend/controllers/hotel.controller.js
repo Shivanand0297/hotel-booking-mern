@@ -114,7 +114,8 @@ export const getAllHotel = async (req, res, next)=>{
 
 
 /********************************
- * @GET_HOTEL_BY_CITY_NAME
+ * @GET_HOTEL_COUNT_BY_CITY_NAME
+ * @Route - http://127.0.0.1:8800/api/v1/hotels/countByCity?cities=newdelhi,bangalore,channai,jaipur
  * @type - GET
  * @desc - to get all hotel by city name
  * @return - hotels obj
@@ -122,7 +123,6 @@ export const getAllHotel = async (req, res, next)=>{
 
 export const countByCity = async (req, res, next)=>{
     try {
-        // http://127.0.0.1:8800/api/v1/hotels/countByCity?cities=newdelhi,bangalore,channai,jaipur
 
         const cities = req.query.cities.split(",")
 
@@ -144,7 +144,7 @@ export const countByCity = async (req, res, next)=>{
 
 
 /********************************
- * @GET_HOTEL_BY_TYPE
+ * @GET_HOTEL_COUNT_BY_TYPE
  * @type - GET
  * @desc - to get all hotel by type
  * @return - hotels obj
@@ -170,6 +170,13 @@ export const countByType = async (_req, res, next)=>{
         next(err)
     }
 }
+
+/********************************
+ * @GET_HOTEL_ROOMS
+ * @type - GET
+ * @desc - getting all the rooms in the mentioned hotel
+ * @return - roomList
+ ********************************/
 
 export const getHotelRooms = async (req, res, next)=>{
     try {

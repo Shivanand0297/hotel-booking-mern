@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { host, v } from '../../config/config'
+import { CONFIG } from '../../config/config'
 import { AuthContext } from '../../context/AuthContext'
 import "./login.css"
 
@@ -28,7 +28,7 @@ const Login = () => {
             dispatch({ type: "LOGIN_START"})
         
         try {
-            const {data} = await axios.post(`${host}/api/${v}/auth/login`, credentials, {
+            const {data} = await axios.post(`${CONFIG.REACT_APP_HOST}/api/${CONFIG.REACT_APP_V}/auth/login`, credentials, {
                 credentials: "include"
                 })
             dispatch({ type: "LOGIN_SUCCESS", payload: data.details }) 

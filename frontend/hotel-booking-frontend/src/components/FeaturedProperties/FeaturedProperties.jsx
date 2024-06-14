@@ -1,12 +1,12 @@
 import React from 'react'
 import useFetch from '../../hooks/useFetch';
 import "./featuredProperties.css"
-import { host, v } from "../../config/config.js"
+import { CONFIG } from "../../config/config.js"
 import { Link } from 'react-router-dom';
 
 const FeaturedProperties = () => {
 
-  const {data, loading} = useFetch(`${host}/api/${v}/hotels?featured=true&limit=4&min=10&max=1000`) //custom hook
+  const {data, loading} = useFetch(`${CONFIG.REACT_APP_HOST}/api/${CONFIG.REACT_APP_V}/hotels?featured=true&limit=4&min=10&max=1000`) //custom hook
 
 
 

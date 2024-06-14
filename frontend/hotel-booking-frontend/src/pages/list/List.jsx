@@ -7,7 +7,7 @@ import "./list.css"
 import { DateRange } from 'react-date-range'
 import SearchItem from '../../components/searchItem/SearchItem'
 import useFetch from '../../hooks/useFetch'
-import {host, v} from "../../config/config"
+import { CONFIG } from "../../config/config"
 import { SearchContext } from '../../context/SearchContext'
 
 const List = () => {
@@ -25,7 +25,7 @@ const List = () => {
   const [maxPrice, setMaxPrice] = useState('')
 
   // making fetch request for search
-  const { data, loading, reFetch} = useFetch(`${host}/api/${v}/hotels?city=${destination}&min=${minPrice || 1}&max=${maxPrice || 4000}`)
+  const { data, loading, reFetch} = useFetch(`${CONFIG.REACT_APP_HOST}/api/${CONFIG.REACT_APP_V}/hotels?city=${destination}&min=${minPrice || 1}&max=${maxPrice || 4000}`)
 
   // using search context for dispatching new search
   const {dispatch}  = useContext(SearchContext)

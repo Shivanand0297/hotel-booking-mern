@@ -1,13 +1,13 @@
 import React from 'react'
 import useFetch from '../../hooks/useFetch.js'
 import "./featured.css"
-import { host, v } from '../../config/config.js'
+import { CONFIG } from '../../config/config.js'
 
 
 
 const Featured = () => {
 
-     const {data, loading} = useFetch(`${host}/api/${v}/hotels/city/countByCity?cities=newdelhi,Bengaluru,chennai,jaipur`) //custom hook
+     const {data, loading} = useFetch(`${CONFIG.REACT_APP_HOST}/api/${CONFIG.REACT_APP_V}/hotels/city/countByCity?cities=newdelhi,Bengaluru,chennai,jaipur`) //custom hook
 
 
   return (

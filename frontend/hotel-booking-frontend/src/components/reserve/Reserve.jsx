@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { host, v } from "../../config/config";
+import { CONFIG } from "../../config/config";
 import useFetch from "../../hooks/useFetch";
 import { SearchContext } from "../../context/SearchContext"
 import "./reserve.css";
@@ -14,7 +14,7 @@ import "./reserve.css";
 const Reserve = ({ setOpenBookModal, hotel_id, price }) => {
 
     // getting room information
-    const { data } = useFetch(`${host}/api/${v}/hotels/room/${hotel_id}`);
+    const { data } = useFetch(`${CONFIG.REACT_APP_HOS}/api/${CONFIG.REACT_APP_V}/hotels/room/${hotel_id}`);
     const { date } = useContext(SearchContext)
     const navigate = useNavigate()
 
@@ -60,7 +60,7 @@ const Reserve = ({ setOpenBookModal, hotel_id, price }) => {
         // pushing booking dates in the unavailable dates array
         try {
             await Promise.all(selectRooms.map( async (room_id)=>{
-                await axios.put(`${host}/api/${v}/rooms/availability/${room_id}`, 
+                await axios.put(`${CONFIG.REACT_APP_HOST}/api/${CONFIG.REACT_APP_V}/rooms/availability/${room_id}`, 
                 {
                     dates: allDates
                 }, 

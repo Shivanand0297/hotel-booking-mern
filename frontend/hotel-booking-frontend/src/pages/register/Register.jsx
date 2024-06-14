@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { host, v } from '../../config/config'
+import { CONFIG } from '../../config/config'
 import "./register.css"
 
 const Register = () => {
@@ -25,7 +25,7 @@ const Register = () => {
         e.preventDefault()
         // starting register
         try {
-            const res = await axios.post(`${host}/api/${v}/auth/register`, inputs, {
+            const res = await axios.post(`${CONFIG.REACT_APP_HOST}/api/${CONFIG.REACT_APP_V}/auth/register`, inputs, {
                 credentials: "include",
                 headers: {
                     "authorization" : `Bearer ${JSON.parse(localStorage.getItem("authorization"))}`

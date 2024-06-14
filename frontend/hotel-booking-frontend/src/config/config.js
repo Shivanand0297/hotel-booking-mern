@@ -1,4 +1,5 @@
-export const v = "v1"
-export const host = "https://api-hotel-booking.cyclic.app"
-// export const host = "http://127.0.0.1:8800"
-export const RAZORPAY_KEY = "rzp_test_6LjUEjimgFsDV0"
+export const CONFIG = {
+  REACT_APP_V: process.env.REACT_APP_V,
+  REACT_APP_HOST: process.env.REACT_APP_HOST,
+  REACT_APP_RAZORPAY_KEY: process.env.REACT_APP_RAZORPAY_KEY,
+}
